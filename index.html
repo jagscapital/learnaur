@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Torah Study Platform — Daily Parsha & Jewish Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=David+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/cinematic.css">
+</head>
+<body>
+
+  <!-- Ambient Background Effects -->
+  <div class="ambient-overlay"></div>
+  <div class="parchment-texture"></div>
+
+  <!-- Main Navigation -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="hebrew-letter">ת</span>
+        <span class="platform-name">Torah Study</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#" class="nav-link active">Home</a>
+        <a href="parsha.html" class="nav-link">Daily Parsha</a>
+        <a href="davening.html" class="nav-link">Davening</a>
+        <a href="search.html" class="nav-link">Explore</a>
+      </div>
+
+      <div class="hebrew-date" id="hebrewDate">Loading...</div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Divine Rays -->
+    <div class="divine-rays">
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+      <div class="ray"></div>
+    </div>
+
+    <!-- Particles -->
+    <div class="particle-container" id="particles"></div>
+
+    <div class="hero-content">
+      <div class="sacred-marker">
+        <div class="crown-icon">♔</div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line">Immerse Yourself</span>
+        <span class="title-line gold-text">In Torah</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        A living, intelligent platform for daily Torah study, deep research, and spiritual connection
+      </p>
+
+      <div class="current-parsha-badge" id="currentParsha">
+        <span class="badge-label">This Week's Parsha</span>
+        <span class="badge-parsha" id="parshaName">Loading...</span>
+      </div>
+    </div>
+
+    <div class="hero-background-gradient"></div>
+  </section>
+
+  <!-- Daily Learning Section -->
+  <section class="learning-modes">
+    <div class="container">
+      <h2 class="section-title">Choose Your Learning Path</h2>
+      <p class="section-subtitle">Three ways to connect with Torah today</p>
+
+      <div class="modes-grid">
+
+        <!-- Casual Mode -->
+        <div class="mode-card casual-mode">
+          <div class="mode-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="mode-title">Casual Study</h3>
+          <p class="mode-description">
+            Quick 3-minute Torah insights. Perfect for daily inspiration and essential wisdom.
+          </p>
+          <ul class="mode-features">
+            <li>Today's Torah summary</li>
+            <li>Key life lesson</li>
+            <li>Practical wisdom</li>
+          </ul>
+          <button class="mode-button" onclick="location.href='parsha.html?mode=casual'">
+            Begin Casual Study
+          </button>
+        </div>
+
+        <!-- Deep Dive Mode -->
+        <div class="mode-card deep-mode featured">
+          <div class="featured-badge">Most Popular</div>
+          <div class="mode-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+              <path d="M16 8a6 6 0 0 0-12 0"/>
+            </svg>
+          </div>
+          <h3 class="mode-title">Deep Dive</h3>
+          <p class="mode-description">
+            Comprehensive Torah research with Gemara, Midrash, Chassidus, and rabbinic commentary.
+          </p>
+          <ul class="mode-features">
+            <li>Full Gemara connections</li>
+            <li>Chassidic insights</li>
+            <li>Kabbalistic concepts</li>
+            <li>Cross-referenced sources</li>
+          </ul>
+          <button class="mode-button" onclick="location.href='parsha.html?mode=deep'">
+            Enter Deep Study
+          </button>
+        </div>
+
+        <!-- Story Mode -->
+        <div class="mode-card story-mode">
+          <div class="mode-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <path d="M8 10h8"/>
+              <path d="M8 14h6"/>
+            </svg>
+          </div>
+          <h3 class="mode-title">Story Experience</h3>
+          <p class="mode-description">
+            Cinematic Torah storytelling with immersive narration and emotional depth.
+          </p>
+          <ul class="mode-features">
+            <li>Narrative presentation</li>
+            <li>Emotional connection</li>
+            <li>Visual atmosphere</li>
+          </ul>
+          <button class="mode-button" onclick="location.href='parsha.html?mode=story'">
+            Experience the Story
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Access Section -->
+  <section class="quick-access">
+    <div class="container">
+      <div class="access-grid">
+
+        <div class="access-card prayer-card">
+          <div class="access-icon">🕎</div>
+          <h3>Daven</h3>
+          <p>Complete Shacharit, Mincha, and Maariv</p>
+          <a href="davening.html" class="access-link">Enter Prayer →</a>
+        </div>
+
+        <div class="access-card search-card">
+          <div class="access-icon">🔍</div>
+          <h3>Explore Torah</h3>
+          <p>Search topics, mitzvot, and connections</p>
+          <a href="search.html" class="access-link">Start Exploring →</a>
+        </div>
+
+        <div class="access-card archive-card">
+          <div class="access-icon">📚</div>
+          <h3>Past Parshiyot</h3>
+          <p>Access the complete Torah archive</p>
+          <a href="archive.html" class="access-link">View Archive →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Intelligence Preview -->
+  <section class="intelligence-preview">
+    <div class="container">
+      <h2 class="section-title">Living Torah Intelligence</h2>
+      <p class="section-subtitle">Every verse connected, every insight discovered</p>
+
+      <div class="intelligence-stats">
+        <div class="stat-item">
+          <div class="stat-number" id="statCommentaries">2,847</div>
+          <div class="stat-label">Commentaries Linked</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="statGemara">1,423</div>
+          <div class="stat-label">Gemara References</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="statMidrash">892</div>
+          <div class="stat-label">Midrash Connections</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="statChassidus">1,156</div>
+          <div class="stat-label">Chassidic Insights</div>
+        </div>
+      </div>
+
+      <div class="intelligence-description">
+        <p>Our platform continuously gathers Torah wisdom from trusted sources, building an ever-growing network of connections, insights, and deep knowledge. Every week, research agents scan and validate new commentary, ensuring authenticity while expanding understanding.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Torah Study Platform</h4>
+          <p>Dedicated to authentic Jewish learning and spiritual growth</p>
+        </div>
+
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="https://www.sefaria.org" target="_blank">Sefaria</a></li>
+            <li><a href="https://www.chabad.org" target="_blank">Chabad.org</a></li>
+            <li><a href="https://www.ou.org" target="_blank">OU Torah</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#methodology">Our Methodology</a></li>
+            <li><a href="#sources">Source Validation</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Torah Study Platform. Built with reverence and precision.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/core.js"></script>
+  <script src="js/hebrew-calendar.js"></script>
+  <script>
+    // Initialize homepage
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initializeHebrewDateAPI();
+      loadCurrentParsha();
+      animateStats();
+    });
+  </script>
+</body>
+</html>

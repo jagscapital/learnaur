@@ -1,0 +1,450 @@
+/* ═══════════════════════════════════════════════════════════
+   DAVENING (PRAYER) PAGE STYLES
+   Sacred Prayer Services
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   PRAYER HERO
+   ───────────────────────────────────────────── */
+.prayer-hero {
+  position: relative;
+  padding: 8rem 2rem 4rem;
+  background: linear-gradient(180deg, rgba(43, 76, 126, 0.12) 0%, transparent 100%);
+  text-align: center;
+}
+
+.prayer-header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.prayer-icon {
+  font-size: 3.5rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+.prayer-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  margin: 2rem 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prayer-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.hebrew-text {
+  font-family: var(--font-hebrew);
+  direction: rtl;
+}
+
+/* ─────────────────────────────────────────────
+   SERVICE SELECTOR
+   ───────────────────────────────────────────── */
+.prayer-selector-section {
+  padding: 4rem 2rem;
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  position: relative;
+  padding: 3rem 2rem;
+  background: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--warm-gold), var(--soft-gold));
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--border-gold);
+  box-shadow: 0 20px 60px var(--shadow-deep), 0 0 40px var(--glow-gold);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-time {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(212, 175, 55, 0.15);
+  border-radius: var(--radius-sm);
+  color: var(--warm-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.service-name {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-primary);
+}
+
+.service-english {
+  color: var(--text-primary);
+}
+
+.service-hebrew {
+  font-family: var(--font-hebrew);
+  color: var(--warm-gold);
+  font-size: 2rem;
+  direction: rtl;
+}
+
+.service-description {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-arrow {
+  font-size: 1.5rem;
+  color: var(--warm-gold);
+  transition: transform var(--transition-smooth);
+}
+
+.service-card:hover .service-arrow {
+  transform: translateX(10px);
+}
+
+/* ─────────────────────────────────────────────
+   PRAYER CONTENT
+   ───────────────────────────────────────────── */
+.prayer-container {
+  position: relative;
+  z-index: 10;
+}
+
+.prayer-service {
+  display: none;
+  padding: 3rem 0 6rem;
+  animation: fadeIn 0.5s ease;
+}
+
+.prayer-service.active {
+  display: block;
+}
+
+.container-prayer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.service-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.75rem 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-sans);
+}
+
+.back-button:hover {
+  border-color: var(--border-gold);
+  color: var(--text-gold);
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.service-title {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hebrew-subtitle {
+  font-family: var(--font-hebrew);
+  font-size: 2.5rem;
+  color: var(--warm-gold);
+  direction: rtl;
+}
+
+/* Prayer Options */
+.prayer-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.option-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: var(--font-sans);
+}
+
+.option-btn:hover,
+.option-btn.active {
+  border-color: var(--border-gold);
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--text-gold);
+}
+
+/* Prayer Content Area */
+.prayer-content-area {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+}
+
+.prayer-section {
+  margin-bottom: 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.prayer-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.prayer-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--warm-gold);
+}
+
+.section-english {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.section-hebrew {
+  font-family: var(--font-hebrew);
+  color: var(--warm-gold);
+  font-size: 1.3rem;
+  direction: rtl;
+}
+
+/* Prayer Text Blocks */
+.prayer-text-block {
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid transparent;
+  transition: all var(--transition-smooth);
+}
+
+.prayer-text-block:hover {
+  background: rgba(212, 175, 55, 0.05);
+  border-left-color: var(--warm-gold);
+}
+
+.prayer-text-block.highlight-prayer {
+  border: 2px solid var(--border-gold);
+  background: rgba(212, 175, 55, 0.08);
+  box-shadow: 0 4px 20px var(--glow-gold);
+}
+
+.hebrew-prayer {
+  font-family: var(--font-hebrew);
+  font-size: 1.5rem;
+  line-height: 2.2;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  direction: rtl;
+  text-align: right;
+}
+
+.shema-text {
+  font-size: 2rem !important;
+  font-weight: 700;
+  color: var(--warm-gold) !important;
+  text-shadow: 0 0 20px var(--glow-gold);
+  padding: 1rem 0;
+}
+
+.english-prayer {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.english-prayer strong {
+  color: var(--warm-gold);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Prayer Notes and Instructions */
+.prayer-note,
+.prayer-instruction {
+  padding: 1.5rem;
+  background: rgba(43, 76, 126, 0.1);
+  border-left: 4px solid var(--divine-blue);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.prayer-instruction {
+  background: rgba(212, 175, 55, 0.08);
+  border-left-color: var(--warm-gold);
+}
+
+/* ─────────────────────────────────────────────
+   FOOTER NOTE
+   ───────────────────────────────────────────── */
+.prayer-footer-note {
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(43, 76, 126, 0.05) 100%);
+}
+
+.source-note {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+
+.source-note h3 {
+  font-family: var(--font-serif);
+  color: var(--warm-gold);
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.source-note p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .prayer-hero {
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  .service-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .prayer-content-area {
+    padding: 2rem 1.5rem;
+  }
+
+  .hebrew-prayer {
+    font-size: 1.3rem;
+  }
+
+  .prayer-options {
+    flex-direction: column;
+  }
+
+  .option-btn {
+    width: 100%;
+  }
+
+  .service-title {
+    font-size: 2.25rem;
+  }
+
+  .hebrew-subtitle {
+    font-size: 2rem;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   PRINT STYLES
+   ───────────────────────────────────────────── */
+@media print {
+  .main-nav,
+  .prayer-hero,
+  .prayer-options,
+  .back-button,
+  .main-footer {
+    display: none;
+  }
+
+  .prayer-service {
+    display: block !important;
+  }
+
+  .prayer-text-block {
+    page-break-inside: avoid;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .hebrew-prayer,
+  .english-prayer {
+    color: black;
+  }
+}

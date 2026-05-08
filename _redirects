@@ -1,0 +1,14 @@
+# Cloudflare Pages Redirects
+
+# Redirect root variations
+/home /index.html 301
+/home.html /index.html 301
+
+# Handle legacy URLs (if migrating from another site)
+# /old-path /new-path 301
+
+# SPA-style fallback (if needed in future)
+# /* /index.html 200
+
+# API proxy (if needed to avoid CORS)
+# /api/* https://www.sefaria.org/api/:splat 200
