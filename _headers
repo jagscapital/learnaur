@@ -8,6 +8,9 @@
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
 
+  # Content Security Policy - Strict XSS Protection
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://www.sefaria.org https://www.hebcal.com https://www.chabad.org https://allorigins.win; frame-ancestors 'self'; base-uri 'self'; form-action 'self'
+
   # CORS Headers (allow Sefaria and Hebcal APIs)
   Access-Control-Allow-Origin: *
 

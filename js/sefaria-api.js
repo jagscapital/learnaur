@@ -47,7 +47,7 @@ async function fetchParshaText(parsha, options = {}) {
 
     console.log('📖 Fetching from Sefaria:', url);
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
 
     if (!response.ok) {
       throw new Error(`Sefaria API error: ${response.status}`);
@@ -81,7 +81,7 @@ async function fetchCommentaries(reference) {
   try {
     const url = `${SefariaAPI.baseURL}/related/${reference}`;
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
     if (!response.ok) {
       throw new Error(`Sefaria API error: ${response.status}`);
     }
@@ -122,7 +122,7 @@ async function fetchCrossReferences(reference) {
   try {
     const url = `${SefariaAPI.baseURL}/related/${reference}`;
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
     if (!response.ok) {
       throw new Error(`Sefaria API error: ${response.status}`);
     }
@@ -184,7 +184,7 @@ async function searchSefaria(query, filters = {}) {
       url += `&filters=${categories.join('|')}`;
     }
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
     if (!response.ok) {
       throw new Error(`Sefaria API error: ${response.status}`);
     }
@@ -208,7 +208,7 @@ async function getTextIndex(title) {
   try {
     const url = `${SefariaAPI.baseURL}/index/${encodeURIComponent(title)}`;
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
     if (!response.ok) {
       throw new Error(`Sefaria API error: ${response.status}`);
     }

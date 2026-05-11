@@ -128,7 +128,7 @@ async function fetchCurrentParsha() {
 
     const url = `https://www.hebcal.com/shabbat?cfg=json&m=50&M=on&lg=s&date=${year}-${month}-${day}`;
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
     const data = await response.json();
 
     // Find the parsha in the response
@@ -170,7 +170,7 @@ async function fetchHebrewDate() {
 
     const url = `https://www.hebcal.com/converter?cfg=json&gy=${year}&gm=${month}&gd=${day}&g2h=1`;
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
     const data = await response.json();
 
     if (data.hebrew) {
@@ -239,7 +239,7 @@ async function isHoliday(date) {
 
     const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=${year}&month=${month}&day=${day}&ss=on&mf=on&c=on&geo=pos&latitude=31.7683&longitude=35.2137&tzid=Asia/Jerusalem&m=50`;
 
-    const response = await fetch(url);
+    const response = await fetchWithTimeout(url, {}, 15000);
     const data = await response.json();
 
     return data.items && data.items.length > 0;
