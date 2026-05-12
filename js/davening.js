@@ -14,8 +14,6 @@ let fontSize = 100; // percentage
 // INITIALIZATION
 // ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('🕎 Initializing Davening Page...');
-
   // Initialize Hebrew date
   await initializeHebrewDateAPI();
 
@@ -26,8 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (service) {
     showService(service);
   }
-
-  console.log('✓ Davening Page Ready');
 });
 
 // ─────────────────────────────────────────────
@@ -166,8 +162,6 @@ async function loadPrayerTexts(serviceName) {
   try {
     // Future: Fetch from authenticated prayer APIs
     // For now, prayers are embedded in HTML
-
-    console.log(`Loading ${serviceName} prayers...`);
 
     // Example of how this could work:
     // const response = await fetch(`/api/prayers/${serviceName}`);

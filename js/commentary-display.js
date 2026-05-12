@@ -122,12 +122,12 @@ function displayCommentaries(commentaries, containerId) {
   }
 
   if (!commentaries || commentaries.length === 0) {
-    container.innerHTML = `
+    container.innerHTML = DOMPurify.sanitize(`
       <div class="commentary-empty">
         <h3>📚 Commentaries Coming Soon</h3>
         <p>We're preparing beautiful educational commentaries for this parsha.</p>
       </div>
-    `;
+    `);
     return;
   }
 
@@ -145,7 +145,7 @@ function displayCommentaries(commentaries, containerId) {
     </div>
   `;
 
-  container.innerHTML = html;
+  container.innerHTML = DOMPurify.sanitize(html);
 }
 
 /**

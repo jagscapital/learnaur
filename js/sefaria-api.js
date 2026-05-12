@@ -38,14 +38,11 @@ async function fetchParshaText(parsha, options = {}) {
     const cached = SefariaAPI.cache.get(cacheKey);
 
     if (cached && Date.now() - cached.timestamp < SefariaAPI.cacheExpiry) {
-      console.log('📚 Using cached parsha text');
       return cached.data;
     }
 
     // Fetch from Sefaria
     const url = `${SefariaAPI.baseURL}/texts/${parshaRef}?context=${context}&commentary=${commentary}`;
-
-    console.log('📖 Fetching from Sefaria:', url);
 
     const response = await fetchWithTimeout(url, {}, 15000);
 

@@ -22,15 +22,11 @@ const TorahPlatform = {
 // INITIALIZATION
 // ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🕎 Torah Study Platform Initializing...');
-
   initializeScrollEffects();
   initializeNavigation();
   initializeTransitions();
   createScrollProgress();
   initializeParticles();
-
-  console.log('✓ Platform Ready');
 });
 
 // ─────────────────────────────────────────────
@@ -129,12 +125,12 @@ function initializeTransitions() {
   // Create transition overlay
   const transition = document.createElement('div');
   transition.className = 'page-transition';
-  transition.innerHTML = `
+  transition.innerHTML = DOMPurify.sanitize(`
     <div class="transition-content">
       <div class="transition-spinner"></div>
       <p>Loading...</p>
     </div>
-  `;
+  `);
   document.body.appendChild(transition);
 
   // Intercept navigation

@@ -13,8 +13,6 @@ let parshaData = null;
 // INITIALIZATION
 // ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('🕎 Initializing Parsha Page...');
-
   // Initialize Hebrew date
   await initializeHebrewDateAPI();
 
@@ -27,8 +25,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Switch to requested mode
   switchMode(mode);
-
-  console.log('✓ Parsha Page Ready');
 });
 
 // ─────────────────────────────────────────────
@@ -205,15 +201,15 @@ async function initializeCasualMode() {
   const casualContent = generateCasualContent(currentParsha, parshaData);
 
   if (summaryEl) {
-    summaryEl.innerHTML = `<p>${casualContent.summary}</p>`;
+    summaryEl.innerHTML = DOMPurify.sanitize(`<p>${casualContent.summary}</p>`);
   }
 
   if (takeawayEl) {
-    takeawayEl.innerHTML = `<p>${casualContent.takeaway}</p>`;
+    takeawayEl.innerHTML = DOMPurify.sanitize(`<p>${casualContent.takeaway}</p>`);
   }
 
   if (wisdomEl) {
-    wisdomEl.innerHTML = `<p>${casualContent.wisdom}</p>`;
+    wisdomEl.innerHTML = DOMPurify.sanitize(`<p>${casualContent.wisdom}</p>`);
   }
 }
 
@@ -267,12 +263,12 @@ function generateAliyahNav() {
     ];
   }
 
-  aliyahNav.innerHTML = aliyot.map((aliyah, index) => `
+  aliyahNav.innerHTML = DOMPurify.sanitize(aliyot.map((aliyah, index) => `
     <button class="aliyah-button ${index === 0 ? 'active' : ''}" onclick="scrollToAliyah(${aliyah.start || index + 1})">
       ${aliyah.name}
       ${aliyah.start && aliyah.end ? `<span class="aliyah-range">(${aliyah.start}-${aliyah.end})</span>` : ''}
     </button>
-  `).join('');
+  `).join(''));
 }
 
 function displayParallelText(data) {
@@ -283,22 +279,22 @@ function displayParallelText(data) {
 
   // Validate data
   if (!data || !data.hebrew || !Array.isArray(data.hebrew) || data.hebrew.length === 0) {
-    hebrewEl.innerHTML = `
+    hebrewEl.innerHTML = DOMPurify.sanitize(`
       <div class="error-message">
         <p>Unable to load Hebrew text.</p>
         <button onclick="location.reload()" class="retry-button">Retry</button>
       </div>
-    `;
-    englishEl.innerHTML = `
+    `);
+    englishEl.innerHTML = DOMPurify.sanitize(`
       <div class="error-message">
         <p>Unable to load English translation.</p>
       </div>
-    `;
+    `);
     return;
   }
 
   // Display Hebrew text
-  hebrewEl.innerHTML = data.hebrew.map((verse, index) => {
+  hebrewEl.innerHTML = DOMPurify.sanitize(data.hebrew.map((verse, index) => {
     const aliyah = data.aliyot ? data.aliyot.find(a => index + 1 === a.start) : null;
     const aliyahMarker = aliyah ? `<div class="aliyah-marker" id="aliyah-${index + 1}">${aliyah.name}</div>` : '';
 
@@ -309,11 +305,11 @@ function displayParallelText(data) {
         <span class="verse-text">${verse}</span>
       </div>
     `;
-  }).join('');
+  }).join(''));
 
   // Display English text
   if (Array.isArray(data.english) && data.english.length > 0) {
-    englishEl.innerHTML = data.english.map((verse, index) => {
+    englishEl.innerHTML = DOMPurify.sanitize(data.english.map((verse, index) => {
       const aliyah = data.aliyot ? data.aliyot.find(a => index + 1 === a.start) : null;
       const aliyahMarker = aliyah ? `<div class="aliyah-marker">${aliyah.name}</div>` : '';
 
@@ -324,15 +320,15 @@ function displayParallelText(data) {
           <span class="verse-text">${verse}</span>
         </div>
       `;
-    }).join('');
+    }).join(''));
   } else {
     // Fallback: show verse numbers only
-    englishEl.innerHTML = data.hebrew.map((_, index) => `
+    englishEl.innerHTML = DOMPurify.sanitize(data.hebrew.map((_, index) => `
       <div class="verse verse-placeholder" id="verse-en-${index + 1}">
         <span class="verse-number">${index + 1}</span>
         <span class="verse-text">Translation loading...</span>
       </div>
-    `).join('');
+    `).join(''));
   }
 
   // Sync scrolling between Hebrew and English
@@ -452,7 +448,7 @@ async function loadOverviewContent() {
   const overview = document.getElementById('overviewContent');
   if (!overview) return;
 
-  overview.innerHTML = '<div class="loading">Loading commentaries...</div>';
+  overview.innerHTML = DOMPurify.sanitize('<div class="loading">Loading commentaries...</div>');
 
   try {
     // Get first verse reference from current parsha
@@ -466,19 +462,19 @@ async function loadOverviewContent() {
     const commentaries = await fetchCommentaries(reference);
 
     if (!commentaries || commentaries.length === 0) {
-      overview.innerHTML = `
+      overview.innerHTML = DOMPurify.sanitize(`
         <div class="commentary-item">
           <div class="commentary-text">
             This parsha contains profound insights from Rashi, Ramban, Ibn Ezra, and other classical commentators.
             Full commentary integration coming soon.
           </div>
         </div>
-      `;
+      `);
       return;
     }
 
     // Display commentaries
-    overview.innerHTML = commentaries.slice(0, 5).map(comm => `
+    overview.innerHTML = DOMPurify.sanitize(commentaries.slice(0, 5).map(comm => `
       <div class="commentary-item">
         <div class="commentary-source">${comm.source}</div>
         <div class="commentary-text">
@@ -486,11 +482,11 @@ async function loadOverviewContent() {
         </div>
         ${comm.reference ? `<a href="https://www.sefaria.org/${comm.reference}" target="_blank" class="reference-link">Read more on Sefaria →</a>` : ''}
       </div>
-    `).join('');
+    `).join(''));
 
   } catch (error) {
     console.error('Error loading overview:', error);
-    overview.innerHTML = `
+    overview.innerHTML = DOMPurify.sanitize(`
       <div class="commentary-item">
         <div class="commentary-source">Commentary Overview</div>
         <div class="commentary-text">
@@ -498,7 +494,7 @@ async function loadOverviewContent() {
           These sages provide insights into the text's meaning, legal implications, and spiritual dimensions.
         </div>
       </div>
-    `;
+    `);
   }
 }
 
@@ -506,7 +502,7 @@ async function loadGemaraContent() {
   const gemara = document.getElementById('gemaraContent');
   if (!gemara) return;
 
-  gemara.innerHTML = '<div class="loading">Loading Gemara references...</div>';
+  gemara.innerHTML = DOMPurify.sanitize('<div class="loading">Loading Gemara references...</div>');
 
   try {
     const reference = parshaData ? `${parshaData.ref}`.split('-')[0] : null;
@@ -515,7 +511,7 @@ async function loadGemaraContent() {
     const crossRefs = await fetchCrossReferences(reference);
 
     if (crossRefs.gemara && crossRefs.gemara.length > 0) {
-      gemara.innerHTML = crossRefs.gemara.slice(0, 5).map(ref => `
+      gemara.innerHTML = DOMPurify.sanitize(crossRefs.gemara.slice(0, 5).map(ref => `
         <div class="commentary-item">
           <div class="commentary-source">${ref.source}</div>
           <div class="commentary-text">
@@ -525,9 +521,9 @@ async function loadGemaraContent() {
             ${ref.reference} →
           </a>
         </div>
-      `).join('');
+      `).join(''));
     } else {
-      gemara.innerHTML = `
+      gemara.innerHTML = DOMPurify.sanitize(`
         <div class="commentary-item">
           <div class="commentary-source">Talmud Connections</div>
           <div class="commentary-text">
@@ -535,17 +531,17 @@ async function loadGemaraContent() {
             Gemara references are being compiled and will be available soon.
           </div>
         </div>
-      `;
+      `);
     }
   } catch (error) {
     console.error('Error loading Gemara:', error);
-    gemara.innerHTML = `
+    gemara.innerHTML = DOMPurify.sanitize(`
       <div class="commentary-item">
         <div class="commentary-text">
           Gemara references for this portion explore its legal and ethical dimensions through Talmudic discussion.
         </div>
       </div>
-    `;
+    `);
   }
 }
 
@@ -553,7 +549,7 @@ async function loadMidrashContent() {
   const midrash = document.getElementById('midrashContent');
   if (!midrash) return;
 
-  midrash.innerHTML = '<div class="loading">Loading Midrash...</div>';
+  midrash.innerHTML = DOMPurify.sanitize('<div class="loading">Loading Midrash...</div>');
 
   try {
     const reference = parshaData ? `${parshaData.ref}`.split('-')[0] : null;
@@ -562,7 +558,7 @@ async function loadMidrashContent() {
     const crossRefs = await fetchCrossReferences(reference);
 
     if (crossRefs.midrash && crossRefs.midrash.length > 0) {
-      midrash.innerHTML = crossRefs.midrash.slice(0, 5).map(ref => `
+      midrash.innerHTML = DOMPurify.sanitize(crossRefs.midrash.slice(0, 5).map(ref => `
         <div class="commentary-item">
           <div class="commentary-source">${ref.source}</div>
           <div class="commentary-text">
@@ -572,9 +568,9 @@ async function loadMidrashContent() {
             ${ref.reference} →
           </a>
         </div>
-      `).join('');
+      `).join(''));
     } else {
-      midrash.innerHTML = `
+      midrash.innerHTML = DOMPurify.sanitize(`
         <div class="commentary-item">
           <div class="commentary-source">Midrash Rabbah</div>
           <div class="commentary-text">
@@ -582,17 +578,17 @@ async function loadMidrashContent() {
             These ancient teachings illuminate hidden wisdom in the Torah text.
           </div>
         </div>
-      `;
+      `);
     }
   } catch (error) {
     console.error('Error loading Midrash:', error);
-    midrash.innerHTML = `
+    midrash.innerHTML = DOMPurify.sanitize(`
       <div class="commentary-item">
         <div class="commentary-text">
           Midrashic teachings for this portion explore its deeper meanings through narrative and allegory.
         </div>
       </div>
-    `;
+    `);
   }
 }
 
@@ -600,7 +596,7 @@ function loadChassidusContent() {
   const chassidus = document.getElementById('chassidusContent');
   if (!chassidus) return;
 
-  chassidus.innerHTML = `
+  chassidus.innerHTML = DOMPurify.sanitize(`
     <div class="commentary-item">
       <div class="commentary-source">Chassidic Masters</div>
       <div class="commentary-text">
@@ -615,14 +611,14 @@ function loadChassidusContent() {
         The Rebbe's insights connect the Torah's timeless wisdom to contemporary life, showing us how to live with purpose and meaning.
       </div>
     </div>
-  `;
+  `);
 }
 
 function loadKabbalahContent() {
   const kabbalah = document.getElementById('kabbalahContent');
   if (!kabbalah) return;
 
-  kabbalah.innerHTML = `
+  kabbalah.innerHTML = DOMPurify.sanitize(`
     <div class="commentary-item">
       <div class="commentary-source">Zohar</div>
       <div class="commentary-text">
@@ -630,14 +626,14 @@ function loadKabbalahContent() {
       </div>
       <a href="#" class="reference-link">Study Kabbalah →</a>
     </div>
-  `;
+  `);
 }
 
 async function loadConnectionsContent() {
   const connections = document.getElementById('connectionsContent');
   if (!connections) return;
 
-  connections.innerHTML = '<div class="loading">Loading connections...</div>';
+  connections.innerHTML = DOMPurify.sanitize('<div class="loading">Loading connections...</div>');
 
   try {
     const reference = parshaData ? `${parshaData.ref}`.split('-')[0] : null;
@@ -647,7 +643,7 @@ async function loadConnectionsContent() {
     const allRefs = [...(crossRefs.other || [])];
 
     if (allRefs.length > 0) {
-      connections.innerHTML = allRefs.slice(0, 8).map(ref => `
+      connections.innerHTML = DOMPurify.sanitize(allRefs.slice(0, 8).map(ref => `
         <div class="commentary-item">
           <div class="commentary-source">${ref.source}</div>
           <div class="commentary-text">
@@ -657,9 +653,9 @@ async function loadConnectionsContent() {
             ${ref.reference} →
           </a>
         </div>
-      `).join('');
+      `).join(''));
     } else {
-      connections.innerHTML = `
+      connections.innerHTML = DOMPurify.sanitize(`
         <div class="commentary-item">
           <div class="commentary-source">Torah Connections</div>
           <div class="commentary-text">
@@ -667,17 +663,17 @@ async function loadConnectionsContent() {
             The web of connections creates a rich tapestry revealing the unity of all Jewish texts.
           </div>
         </div>
-      `;
+      `);
     }
   } catch (error) {
     console.error('Error loading connections:', error);
-    connections.innerHTML = `
+    connections.innerHTML = DOMPurify.sanitize(`
       <div class="commentary-item">
         <div class="commentary-text">
           Torah connections for this portion span across Tanach, revealing thematic and textual relationships.
         </div>
       </div>
-    `;
+    `);
   }
 }
 
@@ -712,7 +708,7 @@ async function initializeStoryMode() {
 
   const storyContent = generateStoryContent(currentParsha, parshaData);
 
-  storyEl.innerHTML = storyContent;
+  storyEl.innerHTML = DOMPurify.sanitize(storyContent);
 }
 
 function generateStoryContent(parsha, data) {
@@ -752,7 +748,7 @@ function showError(title, message, retryCallback) {
   const errorDiv = document.createElement('div');
   errorDiv.id = 'globalError';
   errorDiv.className = 'global-error';
-  errorDiv.innerHTML = `
+  errorDiv.innerHTML = DOMPurify.sanitize(`
     <div class="error-content glass">
       <div class="error-icon">⚠️</div>
       <h3 class="error-title">${title}</h3>
@@ -766,7 +762,7 @@ function showError(title, message, retryCallback) {
         </button>
       </div>
     </div>
-  `;
+  `);
 
   document.body.appendChild(errorDiv);
 
