@@ -65,6 +65,50 @@
       "bio": "A powerful preacher who used Torah commentary to address moral issues of his time. Kli Yakar finds timeless ethical lessons in every verse.",
       "icon": "⚖️",
       "color": "#C0392B"
+    },
+    "ohr_hachaim": {
+      "name": "Ohr HaChaim",
+      "hebrewName": "אור החיים הקדוש",
+      "fullName": "Rabbi Chaim ben Attar",
+      "era": "1696-1743 CE",
+      "location": "Morocco & Jerusalem",
+      "approach": "Mystical devotion and love of Torah",
+      "bio": "The Ohr HaChaim HaKadosh (the Holy Light of Life) wrote one of the most beloved mystical commentaries. His warm approach inspires deep connection with Torah and brings spiritual elevation to every verse.",
+      "icon": "🕯️",
+      "color": "#E91E63"
+    },
+    "rashbam": {
+      "name": "Rashbam",
+      "hebrewName": "רשב״ם",
+      "fullName": "Rabbi Shmuel ben Meir",
+      "era": "1085-1158 CE",
+      "location": "France",
+      "approach": "Straightforward contextual interpretation",
+      "bio": "Rashi's grandson, Rashbam often disagrees with his grandfather's interpretations, insisting on the most literal meaning of the text. He emphasizes understanding verses in their grammatical and historical context.",
+      "icon": "📝",
+      "color": "#795548"
+    },
+    "baal_haturim": {
+      "name": "Baal HaTurim",
+      "hebrewName": "בעל הטורים",
+      "fullName": "Rabbi Yaakov ben Asher",
+      "era": "1269-1343 CE",
+      "location": "Germany & Spain",
+      "approach": "Gematria and numerical patterns",
+      "bio": "Famous for revealing hidden connections through gematria (numerical values of Hebrew letters). The Baal HaTurim uncovers remarkable patterns showing how every word and letter of Torah is precisely chosen.",
+      "icon": "🔢",
+      "color": "#009688"
+    },
+    "alshich": {
+      "name": "Alshich",
+      "hebrewName": "אלשיך",
+      "fullName": "Rabbi Moshe Alshich",
+      "era": "1508-1593 CE",
+      "location": "Safed, Israel",
+      "approach": "Homiletical and inspirational teachings",
+      "bio": "A student of the Arizal in mystical Safed, the Alshich weaves beautiful sermons from every verse. His commentary reads like poetry, transforming Torah into practical wisdom for daily spiritual growth.",
+      "icon": "✍️",
+      "color": "#673AB7"
     }
   }
 }

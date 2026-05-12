@@ -209,6 +209,129 @@ const sampleCommentaries = {
       connections: [],
       sefariaLink: 'https://www.sefaria.org/Sforno_on_Genesis.1.1'
     }
+  ],
+
+  noach: [
+    {
+      id: 'rashi',
+      name: 'Rashi',
+      reference: 'Genesis 6:9',
+      hebrew: 'צדיק תמים - לפי דורותיו, יש מרבותינו דורשים אותו לשבח',
+      english: '"Noah was a righteous man, perfect in his generations" - Some of our Sages interpret this as praise: compared to his wicked generation, he was righteous. In a generation of truly righteous people, he would not have been considered so special. Others say it\'s the opposite praise: if he was righteous even in a corrupt generation, imagine how righteous he would have been among good people!',
+      whyMatters: 'Rashi presents two opposing views to teach us about judging people in context. Do we credit someone more for being good in a bad environment, or do we recognize they could have been even better in a different setting? Both perspectives are valid.',
+      modernApplication: 'When evaluating ourselves or others, context matters immensely. Someone maintaining integrity in a corrupt workplace deserves recognition. At the same time, we shouldn\'t limit ourselves by our environment - we can always grow beyond it.',
+      questions: [
+        'Which interpretation do you find more compelling and why?',
+        'Have you ever been the "righteous one" in a difficult environment? How did it feel?',
+        'How does environment shape character? Can we transcend our circumstances?'
+      ],
+      connections: [
+        {
+          commentator: 'Ibn Ezra\'s perspective',
+          text: 'Ibn Ezra sides with the first interpretation: Noah\'s righteousness was relative to his generation. This teaches us humility - our achievements must be measured against true excellence, not just comparison to others.'
+        }
+      ],
+      sefariaLink: 'https://www.sefaria.org/Rashi_on_Genesis.6.9'
+    },
+    {
+      id: 'ramban',
+      name: 'Ramban',
+      reference: 'Genesis 6:13',
+      english: 'When God says "the end of all flesh has come before Me," Ramban explains this wasn\'t arbitrary destruction. The corruption had reached a point where the very fabric of creation was unraveling. The violence (chamas) had poisoned everything - humans, animals, even the earth itself.',
+      whyMatters: 'Ramban teaches that moral corruption has cosmic consequences. When humans act with violence and injustice, it doesn\'t just hurt other people - it damages the entire created order. The flood was measure-for-measure: they flooded the world with violence, so water flooded the world.',
+      modernApplication: 'Environmental destruction, social injustice, and moral corruption are interconnected. When we pollute relationships with dishonesty or society with injustice, we\'re damaging more than we realize. Our ethical choices have ripple effects throughout creation.',
+      questions: [
+        'Do you see evidence today that moral corruption affects the physical world?',
+        'What does "violence" (chamas) mean beyond physical harm?',
+        'How can one person\'s righteousness (like Noah) make a difference in a corrupt world?'
+      ],
+      connections: [
+        {
+          commentator: 'Modern environmental Torah',
+          text: 'Contemporary Torah scholars connect this to environmental ethics: human moral failure leads to ecological crisis. Ramban\'s insight is incredibly relevant to climate change and sustainability.'
+        }
+      ],
+      sefariaLink: 'https://www.sefaria.org/Ramban_on_Genesis.6.13'
+    },
+    {
+      id: 'kli_yakar',
+      name: 'Kli Yakar',
+      reference: 'Genesis 7:1',
+      english: 'God tells Noah "you alone I have found righteous before Me in this generation." Kli Yakar asks: why didn\'t God tell Noah earlier? He explains that God waited until the last moment so Noah wouldn\'t become arrogant. Pride comes before a fall - knowing you\'re the only righteous person in the world could ruin you spiritually.',
+      whyMatters: 'The Kli Yakar teaches us that even genuine righteousness can be destroyed by awareness of it. Humility isn\'t just a nice trait - it\'s essential protection for our spiritual growth. God\'s timing in revelation teaches us about the dangers of premature recognition.',
+      modernApplication: 'When you\'re doing well spiritually, ethically, or professionally, be careful about how much attention you give yourself. Recognition and praise, even when deserved, can undermine the very qualities that earned them. Stay grounded, stay humble.',
+      questions: [
+        'Have you ever seen someone\'s success go to their head? What happened?',
+        'Why is humility so important for sustained goodness?',
+        'How can we accept deserved recognition without becoming arrogant?'
+      ],
+      connections: [],
+      sefariaLink: 'https://www.sefaria.org/Kli_Yakar_on_Genesis.7.1'
+    }
+  ],
+
+  "lech-lecha": [
+    {
+      id: 'rashi',
+      name: 'Rashi',
+      reference: 'Genesis 12:1',
+      hebrew: 'לך לך - לך להנאתך ולטובתך',
+      english: '"Go forth (lech lecha) from your land" - The doubling of the word "lech" (go) teaches us: Go FOR YOURSELF, for your own benefit and good. God is not asking Abraham to sacrifice everything - He\'s inviting him to actualize his potential. The journey is ultimately for Abraham\'s own growth.',
+      whyMatters: 'Rashi revolutionizes how we understand divine commands. When God asks us to change, leave comfort, or take risks - it\'s not divine sadism. It\'s an invitation to become who we\'re meant to be. The Hebrew "lech lecha" literally means "go to yourself" - journey to your authentic self.',
+      modernApplication: 'When life demands you leave your comfort zone - a career change, moving cities, ending a relationship - reframe it. This isn\'t loss; it\'s invitation. You\'re not being taken FROM something, you\'re being invited TO yourself. Growth requires departure.',
+      questions: [
+        'What would "lech lecha" - going to yourself - mean for you right now?',
+        'What comfort zone is God/life inviting you to leave?',
+        'How have past departures (from places, relationships, old versions of yourself) led to growth?'
+      ],
+      connections: [
+        {
+          commentator: 'Sforno adds depth',
+          text: 'Sforno notes that Abraham was 75 years old. It\'s never too late for transformation. The invitation to "go to yourself" comes at every age and stage of life.'
+        }
+      ],
+      sefariaLink: 'https://www.sefaria.org/Rashi_on_Genesis.12.1'
+    },
+    {
+      id: 'ramban',
+      name: 'Ramban',
+      reference: 'Genesis 15:6',
+      english: 'When God promises Abraham descendants as numerous as the stars, Abraham believes, and God "reckoned it to him as righteousness." Ramban explains that Abraham\'s faith was extraordinary because he had no evidence - Sarah was barren, they were elderly, and it seemed impossible. His faith despite impossibility was the ultimate righteousness.',
+      whyMatters: 'Ramban teaches that faith isn\'t believing easy things - that\'s not faith, that\'s logic. Real faith means trusting God precisely when circumstances scream otherwise. Abraham\'s greatness was believing in life when everything pointed to death, in fertility when faced with barrenness, in future when trapped in present.',
+      modernApplication: 'When your situation feels impossible - financially, relationally, health-wise - that\'s when faith matters most. Faith isn\'t denial of reality; it\'s seeing a deeper reality beyond current circumstances. Like Abraham, we can believe in invisible futures even when present evidence contradicts it.',
+      questions: [
+        'Where in your life are you called to "Abraham-level" faith right now?',
+        'What\'s the difference between faith and denial?',
+        'Have you ever believed something impossible that later came true? What sustained your belief?'
+      ],
+      connections: [
+        {
+          commentator: 'Chassidic interpretation',
+          text: 'The Baal Shem Tov teaches that Abraham\'s faith created the reality. Our deep belief can actually bring things into existence. Faith isn\'t passive waiting - it\'s active creating.'
+        }
+      ],
+      sefariaLink: 'https://www.sefaria.org/Ramban_on_Genesis.15.6'
+    },
+    {
+      id: 'ohr_hachaim',
+      name: 'Ohr HaChaim',
+      reference: 'Genesis 12:1',
+      english: 'The Ohr HaChaim notes that God tells Abraham to leave "your land, your birthplace, and your father\'s house" - three stages of separation, from easiest to hardest. Leaving your country is easier than leaving your hometown, which is easier than leaving family. God gives us challenges in progression, building our capacity gradually.',
+      whyMatters: 'The Ohr HaChaim reveals God\'s pedagogy - divine teaching methodology. Growth happens in stages. We\'re not expected to immediately leap to the hardest change. Even Abraham, the father of faith, was given a graduated path. First geographical distance, then emotional distance, finally psychological distance.',
+      modernApplication: 'When facing major life changes, break them into stages. Leaving a toxic job might mean: first updating resume (leaving "country"), then interviewing elsewhere (leaving "birthplace"), finally submitting resignation (leaving "father\'s house"). Gradual change is sustainable change.',
+      questions: [
+        'What growth challenge are you facing that could be broken into stages?',
+        'Why does gradual progression work better than sudden leaps?',
+        'What\'s your "father\'s house" - the hardest thing you\'d have to leave to fully grow?'
+      ],
+      connections: [
+        {
+          commentator: 'Modern psychology confirms',
+          text: 'Behavioral psychology validates this: habit formation works through small, progressive steps. The Ohr HaChaim understood centuries ago what science now confirms about sustainable change.'
+        }
+      ],
+      sefariaLink: 'https://www.sefaria.org/Ohr_HaChaim_on_Genesis.12.1'
+    }
   ]
 };
 
