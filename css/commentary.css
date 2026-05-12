@@ -1,0 +1,350 @@
+/**
+ * ═══════════════════════════════════════════════════════════
+ * COMMENTARY TEACHING SYSTEM
+ * Beautiful, educational presentation of Torah commentaries
+ * ═══════════════════════════════════════════════════════════
+ */
+
+/* Commentary Container */
+.commentary-teaching-section {
+  margin: 4rem 0;
+  padding: 3rem 0;
+  background: linear-gradient(to bottom, #f9f6f0 0%, #ffffff 100%);
+}
+
+.commentary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Individual Commentary Card */
+.commentary-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border-left: 4px solid var(--commentator-color, #4A90E2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.commentary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Commentator Header */
+.commentator-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.commentator-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.commentator-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  font-family: 'Frank Ruhl Libre', serif;
+}
+
+.commentator-hebrew {
+  font-size: 1.2rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.commentator-meta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.commentator-era,
+.commentator-location {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Commentator Bio */
+.commentator-bio {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.approach-badge {
+  display: inline-block;
+  background: var(--commentator-color, #4A90E2);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Commentary Text */
+.commentary-text-section {
+  margin: 1.5rem 0;
+}
+
+.commentary-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.commentary-hebrew {
+  font-family: 'David Libre', serif;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  direction: rtl;
+  text-align: right;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-right: 3px solid var(--commentator-color, #4A90E2);
+}
+
+.commentary-english {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2c3e50;
+  padding: 1rem;
+  background: #f0f7ff;
+  border-radius: 8px;
+  border-left: 3px solid var(--commentator-color, #4A90E2);
+}
+
+/* Why This Matters Section */
+.why-matters {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+}
+
+.why-matters h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.why-matters p {
+  margin: 0;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Modern Application */
+.modern-application {
+  background: #e8f5e9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border-left: 4px solid #4caf50;
+}
+
+.modern-application h4 {
+  margin: 0 0 0.75rem 0;
+  color: #2e7d32;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modern-application p {
+  margin: 0;
+  color: #1b5e20;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Discussion Questions */
+.discussion-questions {
+  background: #fff3e0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  border-left: 4px solid #ff9800;
+}
+
+.discussion-questions h4 {
+  margin: 0 0 1rem 0;
+  color: #e65100;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.discussion-questions ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.discussion-questions li {
+  margin-bottom: 0.75rem;
+  color: #bf360c;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.discussion-questions li:last-child {
+  margin-bottom: 0;
+}
+
+/* Connections Section */
+.commentary-connections {
+  background: #f3e5f5;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 1.5rem;
+  border-left: 4px solid #9c27b0;
+}
+
+.commentary-connections h4 {
+  margin: 0 0 1rem 0;
+  color: #6a1b9a;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.connection-item {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 6px;
+}
+
+.connection-item:last-child {
+  margin-bottom: 0;
+}
+
+.connection-commentator {
+  font-weight: 700;
+  color: #6a1b9a;
+  margin-bottom: 0.25rem;
+}
+
+.connection-text {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Reference Links */
+.commentary-reference {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.commentary-reference a {
+  color: #4A90E2;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.commentary-reference a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .commentary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .commentary-card {
+    padding: 1.5rem;
+  }
+
+  .commentator-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .commentator-icon {
+    font-size: 2rem;
+  }
+}
+
+/* Loading State */
+.commentary-loading {
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+}
+
+.commentary-loading::before {
+  content: "⏳";
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Empty State */
+.commentary-empty {
+  text-align: center;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.commentary-empty h3 {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.commentary-empty p {
+  color: #999;
+  font-size: 0.95rem;
+}
+
+/* Print Styles */
+@media print {
+  .commentary-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+
+  .commentary-teaching-section {
+    background: white;
+  }
+}

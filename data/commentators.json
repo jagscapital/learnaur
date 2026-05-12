@@ -1,0 +1,70 @@
+{
+  "commentators": {
+    "rashi": {
+      "name": "Rashi",
+      "hebrewName": "רש״י",
+      "fullName": "Rabbi Shlomo Yitzchaki",
+      "era": "1040-1105 CE",
+      "location": "Troyes, France",
+      "approach": "Peshat (literal meaning) with selected Midrashic insights",
+      "bio": "The most fundamental Torah commentator. Rashi's commentary is studied by beginners and scholars alike. He focuses on the plain meaning of the text while incorporating essential Midrashic teachings.",
+      "icon": "📚",
+      "color": "#4A90E2"
+    },
+    "ramban": {
+      "name": "Ramban",
+      "hebrewName": "רמב״ן",
+      "fullName": "Rabbi Moshe ben Nachman (Nachmanides)",
+      "era": "1194-1270 CE",
+      "location": "Girona, Spain & Israel",
+      "approach": "Deep philosophical and mystical insights",
+      "bio": "A master of both revealed and hidden Torah. Ramban brings depth, philosophy, and Kabbalistic wisdom to his commentary, often disagreeing respectfully with Rashi.",
+      "icon": "🔮",
+      "color": "#9B59B6"
+    },
+    "ibn_ezra": {
+      "name": "Ibn Ezra",
+      "hebrewName": "אבן עזרא",
+      "fullName": "Rabbi Abraham ibn Ezra",
+      "era": "1089-1167 CE",
+      "location": "Spain (traveled widely)",
+      "approach": "Grammatical analysis and rational interpretation",
+      "bio": "A scholar of grammar, astronomy, and mathematics. Ibn Ezra's commentary is concise, rational, and often cryptic, focusing on the precise meaning of Hebrew words.",
+      "icon": "🔬",
+      "color": "#E67E22"
+    },
+    "sforno": {
+      "name": "Sforno",
+      "hebrewName": "ספורנו",
+      "fullName": "Rabbi Ovadia Sforno",
+      "era": "1475-1550 CE",
+      "location": "Italy",
+      "approach": "Moral and ethical teachings from the text",
+      "bio": "An Italian Renaissance scholar who emphasized the ethical messages in Torah. Sforno focuses on human free will and moral development.",
+      "icon": "💎",
+      "color": "#16A085"
+    },
+    "or_hachaim": {
+      "name": "Or HaChaim",
+      "hebrewName": "אור החיים",
+      "fullName": "Rabbi Chaim ben Attar",
+      "era": "1696-1743 CE",
+      "location": "Morocco & Israel",
+      "approach": "Mystical and devotional insights",
+      "bio": "Known for his warm, mystical approach that inspires love of Torah. The Or HaChaim's commentary is beloved for its depth and spiritual elevation.",
+      "icon": "✨",
+      "color": "#F39C12"
+    },
+    "kli_yakar": {
+      "name": "Kli Yakar",
+      "hebrewName": "כלי יקר",
+      "fullName": "Rabbi Shlomo Ephraim Luntschitz",
+      "era": "1550-1619 CE",
+      "location": "Prague",
+      "approach": "Ethical lessons and social critique",
+      "bio": "A powerful preacher who used Torah commentary to address moral issues of his time. Kli Yakar finds timeless ethical lessons in every verse.",
+      "icon": "⚖️",
+      "color": "#C0392B"
+    }
+  }
+}

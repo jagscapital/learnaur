@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/parsha.css">
   <link rel="stylesheet" href="css/cinematic.css">
+  <link rel="stylesheet" href="css/commentary.css">
 </head>
 <body>
 
@@ -154,7 +155,9 @@
 
           <div class="commentary-content">
             <div id="overviewTab" class="commentary-tab-content active">
-              <div id="overviewContent">Loading insights...</div>
+              <div id="overviewContent">
+                <!-- Beautiful commentary cards will be inserted here -->
+              </div>
             </div>
             <div id="gemaraTab" class="commentary-tab-content">
               <div id="gemaraContent">Loading Gemara references...</div>
@@ -207,6 +210,24 @@
   <script src="js/core.js"></script>
   <script src="js/hebrew-calendar.js"></script>
   <script src="js/sefaria-api.js"></script>
+  <script src="js/commentary-display.js"></script>
   <script src="js/parsha.js"></script>
+  <script>
+    // Load beautiful commentaries when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get current parsha name (will be set by parsha.js)
+      setTimeout(() => {
+        const parshaName = document.getElementById('parshaNameEnglish')?.textContent?.toLowerCase();
+
+        // Load sample commentaries for Bereshit (will expand to all parshiyot)
+        if (parshaName && sampleCommentaries[parshaName]) {
+          displayCommentaries(sampleCommentaries[parshaName], 'overviewContent');
+        } else if (sampleCommentaries.bereshit) {
+          // Default to Bereshit sample for demo
+          displayCommentaries(sampleCommentaries.bereshit, 'overviewContent');
+        }
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
