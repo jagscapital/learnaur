@@ -712,31 +712,48 @@ async function initializeStoryMode() {
 }
 
 function generateStoryContent(parsha, data) {
-  // This would ideally use AI to create narrative
-  // For now, provide structure
+  if (!data || !data.hebrew || !parsha) {
+    return `<p>Story content for this parsha is being prepared...</p>`;
+  }
 
-  return `
-    <div class="story-section">
-      <p>
-        In this week's Torah portion, we journey through sacred teachings that have guided the Jewish people for millennia. The narrative unfolds with profound wisdom, inviting us to see ourselves within the story.
-      </p>
-      <p>
-        Each verse carries layers of meaning, from the simple interpretation to the deepest mystical insights. As we immerse ourselves in the text, we discover timeless truths about faith, morality, and our purpose in creation.
-      </p>
-      <p>
-        The characters we encounter—whether patriarchs, prophets, or ordinary individuals—mirror our own struggles and aspirations. Their stories become our stories, their lessons our guidance.
-      </p>
-    </div>
+  const parshaName = parsha.name || 'this Torah portion';
+  const firstVerse = data.english && Array.isArray(data.english) && data.english.length > 0
+    ? data.english[0]
+    : '';
 
-    <div class="story-section">
-      <p>
-        Through this sacred narrative, we connect with generations past and future, becoming part of an eternal conversation between the Divine and humanity. The Torah speaks to each generation anew, revealing fresh insights while preserving ancient wisdom.
-      </p>
-      <p>
-        Let us open our hearts to receive these teachings, allowing them to transform our understanding and elevate our daily lives.
-      </p>
-    </div>
-  `;
+  // Build actual narrative from the Torah text
+  let narrative = `<div class="story-section">`;
+
+  // Opening based on actual parsha
+  if (parshaName.toLowerCase().includes('bereshit') || parshaName.toLowerCase().includes('genesis')) {
+    narrative += `<p><strong>In the beginning...</strong> The Torah opens with the most majestic words ever written: "${firstVerse}" These six words contain infinite wisdom about creation, time, and purpose.</p>`;
+    narrative += `<p>God creates not through force or struggle, but through speech—"Let there be light." This teaches us the power of words, of intention, of bringing order from chaos. Each day of creation reveals another dimension of the Divine plan.</p>`;
+  } else if (parshaName.toLowerCase().includes('noach')) {
+    narrative += `<p><strong>A righteous man in a corrupt generation...</strong> Noah stands alone in moral clarity when the entire world has descended into violence. "${firstVerse}"</p>`;
+    narrative += `<p>The flood is not merely punishment—it's purification, a reset button for humanity. Noah's ark becomes a microcosm of preservation, where each creature matters, where diversity is sacred, where hope floats above destruction.</p>`;
+  } else if (parshaName.toLowerCase().includes('lech')) {
+    narrative += `<p><strong>"Go forth from your land..."</strong> God calls Abraham to leave everything familiar. "${firstVerse}" This is the story of every spiritual journey—the courage to depart, the faith to journey toward an unknown destination.</p>`;
+    narrative += `<p>Abraham doesn't just travel geographically; he journeys inward. Each step toward Canaan is a step toward his authentic self. His story teaches us that growth requires departure, that becoming who we're meant to be means leaving who we were.</p>`;
+  } else {
+    // Generic but better narrative using actual Torah content
+    narrative += `<p>Parshat ${parshaName} opens: "${firstVerse || 'Torah text loading...'}"</p>`;
+    narrative += `<p>This portion reveals deep truths through its narratives, laws, and teachings. The Torah here addresses fundamental questions about identity, purpose, and our relationship with the Divine.</p>`;
+  }
+
+  // Add character insights if we have them
+  narrative += `</div><div class="story-section">`;
+
+  if (data.english && Array.isArray(data.english) && data.english.length > 5) {
+    narrative += `<p><strong>The characters come alive:</strong> Every personality in Torah represents aspects of the human experience. Their struggles mirror our own—doubt and faith, anger and forgiveness, ambition and humility.</p>`;
+    narrative += `<p>As we read their stories, we're not studying ancient history; we're discovering ourselves. The Torah's characters are archetypes, templates for understanding human nature in all its complexity.</p>`;
+  }
+
+  // Connection to eternal themes
+  narrative += `<p><strong>Eternal wisdom for today:</strong> This parsha's teachings transcend time. The questions it raises—about justice, compassion, faith, community—are the same ones we grapple with today.</p>`;
+  narrative += `<p>Through these sacred narratives, we connect with over 3,000 years of Jewish wisdom, joining an eternal conversation between heaven and earth, past and future.</p>`;
+  narrative += `</div>`;
+
+  return narrative;
 }
 
 // ─────────────────────────────────────────────

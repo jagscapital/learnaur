@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jewish holidays and their Torah teachings. Explore the spiritual significance, customs, and wisdom of Pesach, Shavuot, Rosh Hashanah, Yom Kippur, Sukkot, and more.">
+  <title>Jewish Holidays | Torah Study Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=David+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/cinematic.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+</head>
+<body>
+
+  <div class="ambient-overlay"></div>
+  <div class="parchment-texture"></div>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <span class="hebrew-letter">ת</span>
+        <span class="platform-name">Torah Study</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="parsha.html" class="nav-link">Daily Parsha</a>
+        <a href="davening.html" class="nav-link">Davening</a>
+        <a href="search.html" class="nav-link">Explore</a>
+      </div>
+
+      <div class="hebrew-date" id="hebrewDate">Loading...</div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="sacred-marker">
+        <div class="crown-icon">🌟</div>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line">Jewish</span>
+        <span class="title-line gold-text">Holidays</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Sacred times of the year • Spiritual celebrations • Eternal wisdom
+      </p>
+    </div>
+  </section>
+
+  <section style="padding: 4rem 2rem;">
+    <div class="container">
+      <h2 class="section-title">Upcoming Holidays</h2>
+      <div id="upcomingHolidays" class="holidays-upcoming">
+        <div class="loading">Loading holiday calendar...</div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 4rem;">Major Holidays</h2>
+
+      <div class="holidays-grid">
+        <!-- Rosh Hashanah -->
+        <div class="holiday-card">
+          <div class="holiday-icon">🍎</div>
+          <h3>Rosh Hashanah</h3>
+          <p class="holiday-hebrew">ראש השנה</p>
+          <p class="holiday-desc">Jewish New Year • Tishrei 1-2 • Judgment & Renewal</p>
+          <div class="holiday-details">
+            <p>The "Head of the Year" when we crown God as King and undergo spiritual judgment. Days of introspection, prayer, and the shofar's call to return.</p>
+            <p><strong>Key Practices:</strong> Shofar, sweet foods, Tashlich, intense prayer</p>
+          </div>
+        </div>
+
+        <!-- Yom Kippur -->
+        <div class="holiday-card">
+          <div class="holiday-icon">🕯️</div>
+          <h3>Yom Kippur</h3>
+          <p class="holiday-hebrew">יום כפור</p>
+          <p class="holiday-desc">Day of Atonement • Tishrei 10 • Holiest Day</p>
+          <div class="holiday-details">
+            <p>The most sacred day of the year. Complete fast, intense prayer, confession, and atonement. We transcend physical existence to connect with the Divine.</p>
+            <p><strong>Key Practices:</strong> 25-hour fast, Kol Nidre, five prayer services, white garments</p>
+          </div>
+        </div>
+
+        <!-- Sukkot -->
+        <div class="holiday-card">
+          <div class="holiday-icon">🌿</div>
+          <h3>Sukkot</h3>
+          <p class="holiday-hebrew">סוכות</p>
+          <p class="holiday-desc">Feast of Tabernacles • Tishrei 15-21 • Joy & Unity</p>
+          <div class="holiday-details">
+            <p>"Time of Our Joy" - We dwell in temporary booths commemorating the Divine protection during the Exodus. Celebrate with the Four Species.</p>
+            <p><strong>Key Practices:</strong> Sukkah dwelling, Lulav & Etrog, hospitality, joy</p>
+          </div>
+        </div>
+
+        <!-- Chanukah -->
+        <div class="holiday-card">
+          <div class="holiday-icon">🕎</div>
+          <h3>Chanukah</h3>
+          <p class="holiday-hebrew">חנוכה</p>
+          <p class="holiday-desc">Festival of Lights • Kislev 25-Tevet 2 • Dedication & Miracles</p>
+          <div class="holiday-details">
+            <p>Commemorates the Maccabee victory and the miraculous eight days of oil. Celebrating Jewish spiritual resistance and the light that defeats darkness.</p>
+            <p><strong>Key Practices:</strong> Menorah lighting, fried foods, dreidel, giving</p>
+          </div>
+        </div>
+
+        <!-- Purim -->
+        <div class="holiday-card">
+          <div class="holiday-icon">👑</div>
+          <h3>Purim</h3>
+          <p class="holiday-hebrew">פורים</p>
+          <p class="holiday-desc">Festival of Lots • Adar 14 • Joy & Hidden Miracles</p>
+          <div class="holiday-details">
+            <p>Celebrating Queen Esther's courage and the salvation from Haman's decree. A day of joy, costumes, and recognizing Divine providence in hidden ways.</p>
+            <p><strong>Key Practices:</strong> Megillah reading, gifts, feasting, charity, joy</p>
+          </div>
+        </div>
+
+        <!-- Pesach -->
+        <div class="holiday-card">
+          <div class="holiday-icon">🍷</div>
+          <h3>Pesach</h3>
+          <p class="holiday-hebrew">פסח</p>
+          <p class="holiday-desc">Passover • Nisan 15-22 • Freedom & Redemption</p>
+          <div class="holiday-details">
+            <p>Festival of Freedom commemorating the Exodus from Egypt. We relive the journey from slavery to liberation, from physical to spiritual freedom.</p>
+            <p><strong>Key Practices:</strong> Seder night, matzah, Four Questions, no chametz</p>
+          </div>
+        </div>
+
+        <!-- Shavuot -->
+        <div class="holiday-card">
+          <div class="holiday-icon">📜</div>
+          <h3>Shavuot</h3>
+          <p class="holiday-hebrew">שבועות</p>
+          <p class="holiday-desc">Feast of Weeks • Sivan 6 • Torah & Revelation</p>
+          <div class="holiday-details">
+            <p>Celebrating the giving of the Torah at Mount Sinai. The marriage between God and Israel, the ultimate purpose of the Exodus.</p>
+            <p><strong>Key Practices:</strong> All-night Torah study, dairy foods, Book of Ruth</p>
+          </div>
+        </div>
+
+        <!-- Tisha B'Av -->
+        <div class="holiday-card">
+          <div class="holiday-icon">💔</div>
+          <h3>Tisha B'Av</h3>
+          <p class="holiday-hebrew">תשעה באב</p>
+          <p class="holiday-desc">Ninth of Av • Av 9 • Mourning & Reflection</p>
+          <div class="holiday-details">
+            <p>Day of mourning for the destruction of both Temples and other Jewish tragedies. A time for introspection about baseless hatred and national unity.</p>
+            <p><strong>Key Practices:</strong> Fasting, Lamentations, sitting low, mourning customs</p>
+          </div>
+        </div>
+
+        <!-- Shabbat -->
+        <div class="holiday-card">
+          <div class="holiday-icon">🕯️🕯️</div>
+          <h3>Shabbat</h3>
+          <p class="holiday-hebrew">שבת</p>
+          <p class="holiday-desc">The Sabbath • Every Week • Rest & Holiness</p>
+          <div class="holiday-details">
+            <p>The weekly masterpiece - a taste of the World to Come. Ceasing creative work to recognize God as Creator and celebrating spiritual connection.</p>
+            <p><strong>Key Practices:</strong> Candle lighting, Kiddush, three meals, rest from work</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Torah Study Platform</h4>
+          <p>Celebrating the sacred cycle of Jewish time</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/purify.min.js"></script>
+  <script src="js/fetch-utils.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/hebrew-calendar.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      initializeHebrewDate();
+      await loadUpcomingHolidays();
+    });
+
+    async function loadUpcomingHolidays() {
+      const container = document.getElementById('upcomingHolidays');
+      try {
+        const response = await fetchWithTimeout('https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month=x&ss=on&mf=on&c=on&geo=geoname&geonameid=3448439&M=on&s=on', {}, 10000);
+        const data = await response.json();
+
+        const upcoming = data.items.filter(item => {
+          const itemDate = new Date(item.date);
+          const now = new Date();
+          const twoMonths = new Date();
+          twoMonths.setMonth(twoMonths.getMonth() + 2);
+          return itemDate >= now && itemDate <= twoMonths;
+        }).slice(0, 5);
+
+        if (upcoming.length > 0) {
+          container.innerHTML = DOMPurify.sanitize(upcoming.map(item => `
+            <div class="upcoming-holiday-item">
+              <div class="upcoming-date">${new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</div>
+              <div class="upcoming-name">${item.title}</div>
+              <div class="upcoming-hebrew">${item.hebrew || ''}</div>
+            </div>
+          `).join(''));
+        } else {
+          container.innerHTML = '<p>No upcoming holidays in the next two months.</p>';
+        }
+      } catch (error) {
+        console.error('Error loading upcoming holidays:', error);
+        container.innerHTML = '<p>Unable to load upcoming holidays. Please check back later.</p>';
+      }
+    }
+  </script>
+</body>
+</html>
