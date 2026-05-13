@@ -27,6 +27,38 @@ If it's excellent, MAKE IT PERFECT.
 
 ---
 
+## 👁️ THE HUMAN VIEW PRINCIPLE
+
+**CRITICAL: We design from a HUMAN perspective, not just technical possibility.**
+
+When generating and evaluating ideas, ALWAYS ask:
+- **What does the USER want?** - Not just "add feature X", but "user wants to feel connected to Torah learning"
+- **How does the USER feel?** - Not just "optimize loading time", but "user should feel excited, not frustrated"
+- **What makes sense to HUMANS?** - Not just "implement algorithm Y", but "show Torah in a way that feels natural and engaging"
+- **What transforms the USER's life?** - Not just "add more data", but "help user have a meaningful spiritual experience"
+
+**Examples**:
+
+❌ **Technical View**: "Implement machine learning recommendation engine"
+✅ **Human View**: "User finishes reading about Noah's ark and wonders 'what should I learn next?' - they see a suggestion for similar themes of faith in other stories, feel guided and supported"
+
+❌ **Technical View**: "Add social sharing functionality"
+✅ **Human View**: "User has a profound insight from a commentary and wants to share it with their study group - they click share and feel proud to contribute to their community's learning"
+
+❌ **Technical View**: "Create data visualization dashboard"
+✅ **Human View**: "User wants to track their Torah learning journey - they see a beautiful timeline of what they've studied and feel motivated to continue growing"
+
+**The FPI Standard:**
+1. Generate ideas from human needs and desires
+2. **Imagine the human emotional journey**
+3. Filter by transformative human impact
+4. Design experiences that feel natural
+5. Build features that change lives
+
+**Every idea must answer: How does this make the USER's life better?**
+
+---
+
 ## 🏗️ THE HIERARCHY OF CREATIVITY
 
 ### 💡 **10,000 AGENTS** — The Idea Generators

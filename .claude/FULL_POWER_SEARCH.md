@@ -28,6 +28,38 @@ If there's inconsistent naming, FIND IT.
 
 ---
 
+## 👁️ THE HUMAN VIEW PRINCIPLE
+
+**CRITICAL: We fix from a HUMAN perspective, not just technical perfection.**
+
+When finding and fixing issues, ALWAYS ask:
+- **What does the USER experience?** - Not just "function undefined", but "user clicks search and nothing happens"
+- **What does the USER need?** - Not just "add semicolon", but "user needs to find Torah verses quickly"
+- **How does the USER think?** - Not just "404 error", but "user clicked holidays and got confused"
+- **What makes sense to HUMANS?** - Not just "refactor for DRY", but "combine all commentary into one readable lesson"
+
+**Examples**:
+
+❌ **Technical View**: "Missing event listener on line 57"
+✅ **Human View**: "User types in search box expecting results, but nothing happens - they feel frustrated and confused"
+
+❌ **Technical View**: "Function returns hardcoded string instead of dynamic data"
+✅ **Human View**: "User reads 'story mode' expecting a narrative about this week's Torah portion, but gets generic placeholder text that's identical every week - they feel deceived"
+
+❌ **Technical View**: "Link href points to non-existent file"
+✅ **Human View**: "User clicks 'Holidays' expecting to learn about Jewish festivals, instead gets a 404 error - they lose trust in the site"
+
+**The FPS Standard:**
+1. Find issues through technical scanning
+2. **Translate to human impact**
+3. Prioritize by human experience
+4. Fix in ways that make sense to humans
+5. Verify the human experience improved
+
+**NEVER lose sight: We're building for PEOPLE, not machines.**
+
+---
+
 ## 🏗️ THE HIERARCHY OF POWER
 
 ### 🔷 **10,000 AGENTS** — The Ground Force
