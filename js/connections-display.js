@@ -36,6 +36,12 @@ const ConnectionsDisplay = {
       // Add expand/collapse functionality
       this.initializeInteractions(container);
 
+      // Phase 3: Render network graph if container exists
+      const graphContainer = document.getElementById('networkGraphContainer');
+      if (graphContainer && window.NetworkGraph && crossRefs) {
+        window.NetworkGraph.createGraph(reference, graphContainer, crossRefs);
+      }
+
     } catch (error) {
       console.error('Error displaying connections:', error);
       container.innerHTML = DOMPurify.sanitize(`

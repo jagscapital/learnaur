@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="css/cinematic.css">
   <link rel="stylesheet" href="css/commentary.css">
   <link rel="stylesheet" href="css/connections.css">
+  <link rel="stylesheet" href="css/hebrew-tooltips.css">
+  <link rel="stylesheet" href="css/network-graph.css">
   <link rel="stylesheet" href="css/accessibility.css">
 </head>
 <body>
@@ -222,6 +224,8 @@
   <script src="js/unified-lesson.js"></script>
   <script src="js/parsha.js"></script>
   <script src="js/parsha-phase2.js"></script>
+  <script src="js/hebrew-insights.js"></script>
+  <script src="js/network-graph.js"></script>
   <script>
     // Load beautiful commentaries when page loads
     document.addEventListener('DOMContentLoaded', () => {
@@ -235,6 +239,32 @@
         } else if (sampleCommentaries.bereshit) {
           // Default to Bereshit sample for demo
           displayCommentaries(sampleCommentaries.bereshit, 'overviewContent');
+        }
+
+        // Phase 3: Initialize Hebrew word tooltips
+        const hebrewText = document.getElementById('hebrewText');
+        if (hebrewText && window.HebrewInsights) {
+          window.HebrewInsights.initializeTooltips(hebrewText);
+        }
+
+        // Phase 3: Add network graph to Connections tab
+        const connectionsContent = document.getElementById('connectionsContent');
+        if (connectionsContent && window.NetworkGraph) {
+          // Create graph container
+          const graphContainer = document.createElement('div');
+          graphContainer.id = 'networkGraphContainer';
+          graphContainer.style.marginTop = '2rem';
+
+          // Add intro text
+          const intro = document.createElement('p');
+          intro.className = 'panel-intro';
+          intro.textContent = 'Visual map of how this verse connects across Torah, Talmud, and Midrash:';
+
+          connectionsContent.appendChild(intro);
+          connectionsContent.appendChild(graphContainer);
+
+          // Graph will be populated when connections are loaded
+          // The connections-display.js will trigger graph rendering
         }
       }, 1000);
     });

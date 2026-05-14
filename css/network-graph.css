@@ -1,0 +1,296 @@
+/* ═══════════════════════════════════════════════════════════
+   NETWORK GRAPH VISUALIZATION - Phase 3
+   Beautiful visual representation of Torah connections
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   GRAPH CONTAINER
+   ───────────────────────────────────────────── */
+.network-graph {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05), transparent);
+  border: 2px solid var(--border-gold);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.graph-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.graph-nodes {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─────────────────────────────────────────────
+   GRAPH NODES
+   ───────────────────────────────────────────── */
+.graph-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.graph-node-center {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, var(--warm-gold), rgba(212, 175, 55, 0.6));
+  border: 4px solid var(--warm-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+  animation: centerPulse 3s ease-in-out infinite;
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
+  }
+}
+
+.graph-node-gemara {
+  width: 80px;
+  height: 80px;
+  background: rgba(212, 175, 55, 0.2);
+  border: 3px solid var(--warm-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph-node-midrash {
+  width: 70px;
+  height: 70px;
+  background: rgba(91, 75, 138, 0.2);
+  border: 3px solid #5b4b8a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph-node-other {
+  width: 60px;
+  height: 60px;
+  background: rgba(43, 76, 126, 0.2);
+  border: 2px solid #2b4c7e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Node hover effects */
+.graph-node:not(.graph-node-center):hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 20;
+}
+
+.graph-node-gemara:hover {
+  background: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+.graph-node-midrash:hover {
+  background: rgba(91, 75, 138, 0.4);
+  box-shadow: 0 0 30px rgba(91, 75, 138, 0.5);
+}
+
+.graph-node-other:hover {
+  background: rgba(43, 76, 126, 0.4);
+  box-shadow: 0 0 30px rgba(43, 76, 126, 0.5);
+}
+
+/* ─────────────────────────────────────────────
+   NODE LABELS
+   ───────────────────────────────────────────── */
+.node-label {
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 0.25rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.graph-node-center .node-label {
+  font-size: 1rem;
+  font-family: var(--font-serif);
+  color: var(--sacred-black);
+}
+
+/* ─────────────────────────────────────────────
+   LEGEND
+   ───────────────────────────────────────────── */
+.graph-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  backdrop-filter: blur(10px);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot-center {
+  background: var(--warm-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+.legend-dot-gemara {
+  background: rgba(212, 175, 55, 0.4);
+  border: 2px solid var(--warm-gold);
+}
+
+.legend-dot-midrash {
+  background: rgba(91, 75, 138, 0.4);
+  border: 2px solid #5b4b8a;
+}
+
+.legend-dot-other {
+  background: rgba(43, 76, 126, 0.4);
+  border: 2px solid #2b4c7e;
+}
+
+/* ─────────────────────────────────────────────
+   GRAPH HINT
+   ───────────────────────────────────────────── */
+.graph-hint {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  backdrop-filter: blur(10px);
+}
+
+/* ─────────────────────────────────────────────
+   LOADING & ERROR STATES
+   ───────────────────────────────────────────── */
+.graph-loading,
+.graph-empty,
+.graph-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  text-align: center;
+}
+
+.graph-loading p,
+.graph-empty p,
+.graph-error p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .network-graph {
+    height: 400px;
+  }
+
+  .graph-node-center {
+    width: 80px;
+    height: 80px;
+  }
+
+  .graph-node-gemara {
+    width: 60px;
+    height: 60px;
+  }
+
+  .graph-node-midrash {
+    width: 50px;
+    height: 50px;
+  }
+
+  .graph-node-other {
+    width: 40px;
+    height: 40px;
+  }
+
+  .node-label {
+    font-size: 0.6rem;
+  }
+
+  .graph-node-center .node-label {
+    font-size: 0.8rem;
+  }
+
+  .graph-legend {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .graph-hint {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+   ───────────────────────────────────────────── */
+@keyframes graphFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.network-graph {
+  animation: graphFadeIn 0.5s ease;
+}

@@ -1,0 +1,236 @@
+/* ═══════════════════════════════════════════════════════════
+   HEBREW WORD TOOLTIPS - Phase 3
+   Interactive hover insights for every Hebrew word
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   INTERACTIVE HEBREW WORDS
+   ───────────────────────────────────────────── */
+.hebrew-word {
+  position: relative;
+  cursor: help;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.hebrew-word:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-bottom-color: var(--warm-gold);
+  color: var(--warm-gold);
+}
+
+.hebrew-word:active {
+  transform: scale(0.98);
+}
+
+/* ─────────────────────────────────────────────
+   TOOLTIP CONTAINER
+   ───────────────────────────────────────────── */
+.hebrew-tooltip {
+  position: absolute;
+  z-index: 10000;
+  max-width: 400px;
+  background: var(--bg-elevated);
+  border: 2px solid var(--warm-gold);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              0 0 40px rgba(212, 175, 55, 0.3);
+  padding: 0;
+  animation: tooltipFadeIn 0.2s ease;
+  backdrop-filter: blur(20px);
+}
+
+.hebrew-tooltip.pinned {
+  border-color: var(--soft-gold);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7),
+              0 0 60px rgba(212, 175, 55, 0.5);
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   TOOLTIP CONTENT
+   ───────────────────────────────────────────── */
+.tooltip-content {
+  padding: 1.5rem;
+}
+
+.tooltip-word {
+  font-family: var(--font-hebrew);
+  font-size: 2rem;
+  color: var(--warm-gold);
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-gold);
+  direction: rtl;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.tooltip-section {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--border-gold);
+}
+
+.tooltip-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.tooltip-section strong {
+  display: block;
+  color: var(--soft-gold);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tooltip-section p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tooltip-link {
+  color: var(--warm-gold);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.tooltip-link:hover {
+  color: var(--soft-gold);
+  text-decoration: underline;
+}
+
+/* ─────────────────────────────────────────────
+   TOOLTIP FOOTER
+   ───────────────────────────────────────────── */
+.tooltip-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.tooltip-action {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--warm-gold), var(--soft-gold));
+  color: var(--sacred-black);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.tooltip-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+.tooltip-hint {
+  margin-top: 0.75rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────────
+   TOOLTIP CLOSE BUTTON (when pinned)
+   ───────────────────────────────────────────── */
+.tooltip-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid var(--warm-gold);
+  border-radius: 50%;
+  color: var(--warm-gold);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.tooltip-close:hover {
+  background: var(--warm-gold);
+  color: var(--sacred-black);
+  transform: scale(1.1);
+}
+
+/* ─────────────────────────────────────────────
+   LOADING STATE
+   ───────────────────────────────────────────── */
+.tooltip-loading {
+  padding: 2rem;
+  text-align: center;
+  min-width: 200px;
+}
+
+.loading-spinner-small {
+  width: 30px;
+  height: 30px;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--warm-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+.tooltip-loading p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hebrew-tooltip {
+    max-width: 90vw;
+    left: 5vw !important;
+  }
+
+  .tooltip-content {
+    padding: 1rem;
+  }
+
+  .tooltip-word {
+    font-size: 1.5rem;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   DARK MODE ENHANCEMENTS
+   ───────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  .hebrew-tooltip {
+    background: rgba(13, 13, 21, 0.98);
+  }
+}
