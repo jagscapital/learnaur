@@ -305,13 +305,13 @@ function displayParallelText(data) {
         <span class="verse-number">${index + 1}</span>
         <span class="verse-text">${verse}</span>
         <span class="verse-actions">
-          <button class="verse-action-btn" onclick="playVerseAudio('${reference}', this)" title="Listen to this verse" aria-label="Play audio">
+          <button class="verse-action-btn" data-action="audio" data-verse-ref="${reference}" title="Listen to this verse" aria-label="Play audio">
             🔊
           </button>
-          <button class="verse-action-btn" onclick="openVerseNotes('${reference}')" title="Add note" aria-label="Add note">
+          <button class="verse-action-btn" data-action="notes" data-verse-ref="${reference}" title="Add note" aria-label="Add note">
             📝
           </button>
-          <button class="verse-action-btn" onclick="shareVerse('${reference}', \`${verse.replace(/`/g, "'")}\`)" title="Share" aria-label="Share verse">
+          <button class="verse-action-btn" data-action="share" data-verse-ref="${reference}" title="Share" aria-label="Share verse">
             🔗
           </button>
         </span>
@@ -332,13 +332,13 @@ function displayParallelText(data) {
           <span class="verse-number">${index + 1}</span>
           <span class="verse-text">${verse}</span>
           <span class="verse-actions">
-            <button class="verse-action-btn" onclick="playVerseAudio('${reference}', this)" title="Listen to this verse" aria-label="Play audio">
+            <button class="verse-action-btn" data-action="audio" data-verse-ref="${reference}" title="Listen to this verse" aria-label="Play audio">
               🔊
             </button>
-            <button class="verse-action-btn" onclick="openVerseNotes('${reference}')" title="Add note" aria-label="Add note">
+            <button class="verse-action-btn" data-action="notes" data-verse-ref="${reference}" title="Add note" aria-label="Add note">
               📝
             </button>
-            <button class="verse-action-btn" onclick="shareVerse('${reference}', \`${verse.replace(/`/g, "'").replace(/"/g, "&quot;")}\`)" title="Share" aria-label="Share verse">
+            <button class="verse-action-btn" data-action="share" data-verse-ref="${reference}" title="Share" aria-label="Share verse">
               🔗
             </button>
           </span>
@@ -360,6 +360,63 @@ function displayParallelText(data) {
 
   // Enable verse highlighting on hover
   enableVerseHighlighting();
+
+  // Add event delegation for verse action buttons
+  initializeVerseActionListeners();
+}
+
+/**
+ * Initialize event listeners for verse action buttons using event delegation
+ * This replaces inline onclick handlers which are stripped by DOMPurify
+ */
+function initializeVerseActionListeners() {
+  // Remove any existing listeners to avoid duplicates
+  const hebrewEl = document.getElementById('hebrewText');
+  const englishEl = document.getElementById('englishText');
+
+  if (hebrewEl) {
+    hebrewEl.addEventListener('click', handleVerseAction);
+  }
+
+  if (englishEl) {
+    englishEl.addEventListener('click', handleVerseAction);
+  }
+}
+
+/**
+ * Handle verse action button clicks
+ */
+function handleVerseAction(e) {
+  const button = e.target.closest('.verse-action-btn');
+  if (!button) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const action = button.dataset.action;
+  const verseRef = button.dataset.verseRef;
+  const verse = button.closest('.verse');
+
+  if (!action || !verseRef || !verse) {
+    console.warn('Missing data for verse action', { action, verseRef });
+    return;
+  }
+
+  const verseText = verse.querySelector('.verse-text')?.textContent || '';
+
+  switch (action) {
+    case 'audio':
+      playVerseAudio(verseRef, button);
+      break;
+    case 'notes':
+      openVerseNotes(verseRef);
+      break;
+    case 'share':
+      shareVerse(verseRef, verseText);
+      break;
+    default:
+      console.warn('Unknown verse action:', action);
+  }
 }
 
 function syncParallelScrolling(hebrew, english) {
