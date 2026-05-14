@@ -3,13 +3,20 @@
  * SEFARIA API INTEGRATION
  * Authentic Torah texts, commentaries, and cross-references
  * API Documentation: https://developers.sefaria.org/
+ *
+ * Phase 1: Smart caching with IndexedDB (cache-first strategy)
+ * - Check IndexedDB cache first
+ * - If miss, fetch from Sefaria API
+ * - Cache response for 24 hours
+ * - Fallback to expired cache if API fails
  * ═══════════════════════════════════════════════════════════
  */
 
 const SefariaAPI = {
   baseURL: 'https://www.sefaria.org/api',
-  cache: new Map(),
-  cacheExpiry: 7 * 24 * 60 * 60 * 1000 // 1 week
+  // Legacy Map cache deprecated in favor of IndexedDB
+  // cache: new Map(),
+  // cacheExpiry: 7 * 24 * 60 * 60 * 1000 // 1 week
 };
 
 /**
@@ -33,34 +40,14 @@ async function fetchParshaText(parsha, options = {}) {
       throw new Error(`Unknown parsha: ${parsha}`);
     }
 
-    // Check cache
-    const cacheKey = `parsha_${parsha}_${language}`;
-    const cached = SefariaAPI.cache.get(cacheKey);
-
-    if (cached && Date.now() - cached.timestamp < SefariaAPI.cacheExpiry) {
-      return cached.data;
-    }
-
-    // Fetch from Sefaria
+    // Build API URL
     const url = `${SefariaAPI.baseURL}/texts/${parshaRef}?context=${context}&commentary=${commentary}`;
 
-    const response = await fetchWithTimeout(url, {}, 15000);
+    // Use cache-first fetch strategy (check IndexedDB → Sefaria API → expired cache fallback)
+    const data = await window.SefariaCache.fetch(url, { category: 'torah' });
 
-    if (!response.ok) {
-      throw new Error(`Sefaria API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // Process the response
+    // Process and return
     const processedData = processParshaData(data);
-
-    // Cache the result
-    SefariaAPI.cache.set(cacheKey, {
-      data: processedData,
-      timestamp: Date.now()
-    });
-
     return processedData;
 
   } catch (error) {
@@ -78,12 +65,8 @@ async function fetchCommentaries(reference) {
   try {
     const url = `${SefariaAPI.baseURL}/related/${reference}`;
 
-    const response = await fetchWithTimeout(url, {}, 15000);
-    if (!response.ok) {
-      throw new Error(`Sefaria API error: ${response.status}`);
-    }
-
-    const data = await response.json();
+    // Use cache-first fetch
+    const data = await window.SefariaCache.fetch(url, { category: 'commentary' });
 
     // Extract and organize commentaries
     const commentaries = [];
@@ -119,12 +102,8 @@ async function fetchCrossReferences(reference) {
   try {
     const url = `${SefariaAPI.baseURL}/related/${reference}`;
 
-    const response = await fetchWithTimeout(url, {}, 15000);
-    if (!response.ok) {
-      throw new Error(`Sefaria API error: ${response.status}`);
-    }
-
-    const data = await response.json();
+    // Use cache-first fetch
+    const data = await window.SefariaCache.fetch(url, { category: 'cross-ref' });
 
     const crossRefs = {
       gemara: [],
@@ -181,12 +160,8 @@ async function searchSefaria(query, filters = {}) {
       url += `&filters=${categories.join('|')}`;
     }
 
-    const response = await fetchWithTimeout(url, {}, 15000);
-    if (!response.ok) {
-      throw new Error(`Sefaria API error: ${response.status}`);
-    }
-
-    const data = await response.json();
+    // Use cache-first fetch
+    const data = await window.SefariaCache.fetch(url, { category: 'search' });
 
     return processSearchResults(data, limit);
 
@@ -205,12 +180,8 @@ async function getTextIndex(title) {
   try {
     const url = `${SefariaAPI.baseURL}/index/${encodeURIComponent(title)}`;
 
-    const response = await fetchWithTimeout(url, {}, 15000);
-    if (!response.ok) {
-      throw new Error(`Sefaria API error: ${response.status}`);
-    }
-
-    const data = await response.json();
+    // Use cache-first fetch
+    const data = await window.SefariaCache.fetch(url, { category: 'index' });
     return data;
 
   } catch (error) {
@@ -389,20 +360,7 @@ function processSearchResults(data, limit) {
   }));
 }
 
-/**
- * Clear old cache entries
- */
-function clearOldCache() {
-  const now = Date.now();
-  SefariaAPI.cache.forEach((value, key) => {
-    if (now - value.timestamp > SefariaAPI.cacheExpiry) {
-      SefariaAPI.cache.delete(key);
-    }
-  });
-}
-
-// Run cache cleanup periodically (every hour)
-setInterval(clearOldCache, 60 * 60 * 1000);
+// Legacy Map cache cleanup removed - IndexedDB handles expiry automatically
 
 // ─────────────────────────────────────────────
 // EXPORTS
