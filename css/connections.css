@@ -1,0 +1,304 @@
+/* ═══════════════════════════════════════════════════════════
+   CONNECTIONS DISPLAY - Phase 2 Styles
+   Beautiful panels for Talmud, Midrash, cross-references
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   CONNECTIONS GRID
+   ───────────────────────────────────────────── */
+.connections-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 1200px) {
+  .connections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   CONNECTION PANELS
+   ───────────────────────────────────────────── */
+.connection-panel {
+  background: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.connection-panel:hover {
+  border-color: var(--border-gold);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+}
+
+.connection-panel.expanded {
+  border-color: var(--border-gold);
+}
+
+/* Specific panel colors */
+.gemara-panel.expanded {
+  border-color: rgba(212, 175, 55, 0.6);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), var(--bg-card));
+}
+
+.midrash-panel.expanded {
+  border-color: rgba(91, 75, 138, 0.6);
+  background: linear-gradient(135deg, rgba(91, 75, 138, 0.05), var(--bg-card));
+}
+
+.mishnah-panel.expanded {
+  border-color: rgba(43, 76, 126, 0.6);
+  background: linear-gradient(135deg, rgba(43, 76, 126, 0.05), var(--bg-card));
+}
+
+/* ─────────────────────────────────────────────
+   PANEL HEADER
+   ───────────────────────────────────────────── */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.panel-header:hover {
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.panel-icon {
+  font-size: 1.75rem;
+}
+
+.panel-title h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--warm-gold);
+  margin: 0;
+  font-weight: 700;
+}
+
+.panel-count {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--soft-gold);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.panel-toggle {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--border-gold);
+  color: var(--warm-gold);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-toggle:hover {
+  background: rgba(212, 175, 55, 0.2);
+  transform: scale(1.1);
+}
+
+/* ─────────────────────────────────────────────
+   PANEL CONTENT
+   ───────────────────────────────────────────── */
+.panel-content {
+  padding: 2rem;
+}
+
+.panel-intro {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.connections-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.connections-list-compact {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* ─────────────────────────────────────────────
+   CONNECTION ITEMS
+   ───────────────────────────────────────────── */
+.connection-item {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.connection-item:hover {
+  background: rgba(212, 175, 55, 0.08);
+  border-left-color: var(--warm-gold);
+  transform: translateX(5px);
+}
+
+.connection-item-compact {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.connection-ref {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.ref-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.ref-link {
+  font-family: var(--font-serif);
+  color: var(--warm-gold);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color var(--transition-fast);
+}
+
+.ref-link:hover {
+  color: var(--soft-gold);
+  text-decoration: underline;
+}
+
+.connection-preview {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.more-refs {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ─────────────────────────────────────────────
+   EMPTY/ERROR STATES
+   ───────────────────────────────────────────── */
+.connections-empty,
+.connections-error,
+.connections-loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-card);
+  border: 2px dashed var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.connections-empty h3 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--warm-gold);
+  margin-bottom: 1rem;
+}
+
+.connections-empty p,
+.connections-error p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.connections-loading {
+  border-style: solid;
+  border-color: var(--border-gold);
+}
+
+.connections-loading p {
+  color: var(--text-secondary);
+  margin: 1rem 0 0 0;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .panel-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .panel-content {
+    padding: 1.5rem;
+  }
+
+  .panel-title h3 {
+    font-size: 1.25rem;
+  }
+
+  .panel-icon {
+    font-size: 1.5rem;
+  }
+
+  .connections-list-compact {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+   ───────────────────────────────────────────── */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
+}
+
+.panel-content[style*="display: block"] {
+  animation: slideDown 0.3s ease-out;
+}
