@@ -298,11 +298,23 @@ function displayParallelText(data) {
     const aliyah = data.aliyot ? data.aliyot.find(a => index + 1 === a.start) : null;
     const aliyahMarker = aliyah ? `<div class="aliyah-marker" id="aliyah-${index + 1}">${aliyah.name}</div>` : '';
 
+    const reference = `${currentParsha?.name || 'Genesis'} ${index + 1}`;
     return `
       ${aliyahMarker}
-      <div class="verse" id="verse-${index + 1}" data-verse="${index + 1}">
+      <div class="verse" id="verse-${index + 1}" data-verse="${index + 1}" data-verse-ref="${reference}">
         <span class="verse-number">${index + 1}</span>
         <span class="verse-text">${verse}</span>
+        <span class="verse-actions">
+          <button class="verse-action-btn" onclick="playVerseAudio('${reference}', this)" title="Listen to this verse" aria-label="Play audio">
+            🔊
+          </button>
+          <button class="verse-action-btn" onclick="openVerseNotes('${reference}')" title="Add note" aria-label="Add note">
+            📝
+          </button>
+          <button class="verse-action-btn" onclick="shareVerse('${reference}', \`${verse.replace(/`/g, "'")}\`)" title="Share" aria-label="Share verse">
+            🔗
+          </button>
+        </span>
       </div>
     `;
   }).join(''));
@@ -313,11 +325,23 @@ function displayParallelText(data) {
       const aliyah = data.aliyot ? data.aliyot.find(a => index + 1 === a.start) : null;
       const aliyahMarker = aliyah ? `<div class="aliyah-marker">${aliyah.name}</div>` : '';
 
+      const reference = `${currentParsha?.name || 'Genesis'} ${index + 1}`;
       return `
         ${aliyahMarker}
-        <div class="verse" id="verse-en-${index + 1}" data-verse="${index + 1}">
+        <div class="verse" id="verse-en-${index + 1}" data-verse="${index + 1}" data-verse-ref="${reference}">
           <span class="verse-number">${index + 1}</span>
           <span class="verse-text">${verse}</span>
+          <span class="verse-actions">
+            <button class="verse-action-btn" onclick="playVerseAudio('${reference}', this)" title="Listen to this verse" aria-label="Play audio">
+              🔊
+            </button>
+            <button class="verse-action-btn" onclick="openVerseNotes('${reference}')" title="Add note" aria-label="Add note">
+              📝
+            </button>
+            <button class="verse-action-btn" onclick="shareVerse('${reference}', \`${verse.replace(/`/g, "'").replace(/"/g, "&quot;")}\`)" title="Share" aria-label="Share verse">
+              🔗
+            </button>
+          </span>
         </div>
       `;
     }).join(''));
@@ -790,8 +814,63 @@ function showError(title, message, retryCallback) {
 }
 
 // ─────────────────────────────────────────────
+// VERSE ACTION HANDLERS
+// ─────────────────────────────────────────────
+
+/**
+ * Play audio for a specific verse
+ */
+async function playVerseAudio(reference, button) {
+  try {
+    // Get the verse element
+    const verseElement = button.closest('.verse');
+    const verseText = verseElement.querySelector('.verse-text')?.textContent || '';
+
+    // Use TorahAudioPlayer if available
+    if (window.TorahAudioPlayer) {
+      await window.TorahAudioPlayer.playVerse(reference, verseText);
+    } else {
+      console.warn('Audio player not initialized');
+      // Fallback: use text-to-speech if available
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(verseText);
+        utterance.lang = 'he-IL';
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+  } catch (error) {
+    console.error('Error playing verse audio:', error);
+  }
+}
+
+/**
+ * Open notes panel for a specific verse
+ */
+function openVerseNotes(reference) {
+  if (window.StudyNotesUI) {
+    window.StudyNotesUI.showNotes(reference);
+  } else {
+    console.warn('Study notes not initialized');
+  }
+}
+
+/**
+ * Share a verse
+ */
+async function shareVerse(reference, text) {
+  if (window.SocialFeatures) {
+    await window.SocialFeatures.shareVerse(reference, text);
+  } else {
+    console.warn('Social features not initialized');
+  }
+}
+
+// ─────────────────────────────────────────────
 // EXPORTS
 // ─────────────────────────────────────────────
 window.switchMode = switchMode;
 window.showCommentaryTab = showCommentaryTab;
 window.scrollToAliyah = scrollToAliyah;
+window.playVerseAudio = playVerseAudio;
+window.openVerseNotes = openVerseNotes;
+window.shareVerse = shareVerse;

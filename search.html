@@ -133,12 +133,42 @@
   <script src="js/fetch-utils.js"></script>
   <script src="js/sefaria-cache.js"></script>
   <script src="js/sefaria-api.js"></script>
+  <script src="js/advanced-search.js"></script>
   <script src="js/search.js"></script>
   <script src="js/core.js"></script>
   <script src="js/hebrew-calendar.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      initializeHebrewDate();
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Initialize Hebrew date
+      await initializeHebrewDate();
+
+      // Initialize advanced search system
+      if (window.AdvancedSearch) {
+        await window.AdvancedSearch.init();
+      }
+
+      // Render advanced search UI
+      const searchInput = document.querySelector('.search-input');
+      if (searchInput && window.AdvancedSearchUI) {
+        // Replace simple search with advanced search
+        const searchContainer = searchInput.closest('.search-container');
+        if (searchContainer) {
+          searchContainer.remove();
+        }
+
+        // Create advanced search container in hero section
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+          const advancedSearchDiv = document.createElement('div');
+          advancedSearchDiv.id = 'advancedSearchContainer';
+          advancedSearchDiv.style.maxWidth = '900px';
+          advancedSearchDiv.style.margin = '3rem auto';
+          heroContent.appendChild(advancedSearchDiv);
+
+          // Render advanced search UI
+          window.AdvancedSearchUI.render('advancedSearchContainer');
+        }
+      }
     });
   </script>
 </body>

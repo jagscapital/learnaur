@@ -770,3 +770,68 @@
     border-bottom: 1px solid var(--border-subtle);
   }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   VERSE ACTION BUTTONS
+   ═══════════════════════════════════════════════════════════ */
+
+.verse {
+  position: relative;
+  padding-right: 3rem; /* Make room for action buttons */
+}
+
+.verse-actions {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.verse:hover .verse-actions {
+  opacity: 1;
+}
+
+.verse-action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 32px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verse-action-btn:hover {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+.verse-action-btn:active {
+  transform: scale(0.95);
+}
+
+.verse-action-btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Mobile: Always show action buttons */
+@media (max-width: 768px) {
+  .verse-actions {
+    opacity: 0.7;
+  }
+
+  .verse:hover .verse-actions {
+    opacity: 1;
+  }
+}
