@@ -72,13 +72,26 @@ async function performSearch(query, resultsContainer) {
   resultsContainer.innerHTML = DOMPurify.sanitize(`
     <div class="search-loading">
       <div class="loading-spinner"></div>
-      <p>Searching Torah, Talmud, and commentaries...</p>
+      <p>Analyzing topic across all Jewish texts...</p>
+      <p style="font-size: 0.9em; opacity: 0.7; margin-top: 0.5rem;">
+        Searching Torah • Talmud • Midrash • Commentaries • Generating comprehensive essay...
+      </p>
     </div>
   `);
   resultsContainer.classList.add('active');
 
   try {
-    // Search Sefaria
+    // Use Comprehensive Search if available (generates FULL essays)
+    if (window.ComprehensiveSearch) {
+      const essay = await window.ComprehensiveSearch.searchAndGenerateEssay(query);
+
+      if (essay && essay.essay) {
+        displayEssay(essay, resultsContainer, query);
+        return;
+      }
+    }
+
+    // Fallback to basic search if ComprehensiveSearch not available
     const results = await searchSefaria(query);
 
     if (results && results.length > 0) {
@@ -91,6 +104,61 @@ async function performSearch(query, resultsContainer) {
     console.error('Search error:', error);
     showError(resultsContainer, query);
   }
+}
+
+/**
+ * Display comprehensive essay (NO placeholders, COMPLETE content)
+ */
+function displayEssay(essayData, container, query) {
+  const { essay, totalMentions, sources, patterns } = essayData;
+
+  // Format essay paragraphs
+  const essayParagraphs = essay.split('\n\n').filter(p => p.trim());
+
+  const html = `
+    <div class="comprehensive-essay">
+      <div class="essay-header">
+        <h2>Comprehensive Analysis: "${query}"</h2>
+        <div class="essay-meta">
+          <span class="meta-item">📚 ${totalMentions || 0} mentions across all texts</span>
+          <span class="meta-item">🔍 ${sources?.length || 0} sources analyzed</span>
+          <span class="meta-item">🧩 ${patterns?.length || 0} patterns identified</span>
+        </div>
+      </div>
+
+      <div class="essay-content">
+        ${essayParagraphs.map(paragraph => {
+          // Check if paragraph is a heading (ends with :)
+          if (paragraph.trim().endsWith(':') && paragraph.length < 100) {
+            return `<h3 class="essay-section-heading">${paragraph.trim()}</h3>`;
+          }
+          return `<p class="essay-paragraph">${paragraph.trim()}</p>`;
+        }).join('\n')}
+      </div>
+
+      ${sources && sources.length > 0 ? `
+        <div class="essay-sources">
+          <h3>Sources Referenced</h3>
+          <div class="sources-list">
+            ${sources.slice(0, 10).map(source => `
+              <div class="source-item">
+                <span class="source-ref">${source.ref || source}</span>
+              </div>
+            `).join('')}
+            ${sources.length > 10 ? `
+              <p class="sources-more">...and ${sources.length - 10} more sources</p>
+            ` : ''}
+          </div>
+        </div>
+      ` : ''}
+
+      <div class="essay-footer">
+        <p><strong>Complete Analysis Generated</strong> — This essay synthesizes insights from Torah, Talmud, Midrash, and classical commentaries.</p>
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = DOMPurify.sanitize(html);
 }
 
 /**

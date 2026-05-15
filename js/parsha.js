@@ -787,22 +787,50 @@ async function initializeStoryMode() {
   const storyEl = document.getElementById('storyText');
   if (!storyEl) return;
 
-  const storyContent = generateStoryContent(currentParsha, parshaData);
+  const storyContent = await generateStoryContent(currentParsha, parshaData);
 
   storyEl.innerHTML = DOMPurify.sanitize(storyContent);
 }
 
-function generateStoryContent(parsha, data) {
+async function generateStoryContent(parsha, data) {
   if (!data || !data.hebrew || !parsha) {
     return `<p>Story content for this parsha is being prepared...</p>`;
   }
 
   const parshaName = parsha.name || 'this Torah portion';
+
+  // Use the real StoryGenerator for ACTUAL narrative generation
+  if (window.StoryGenerator) {
+    try {
+      const story = await window.StoryGenerator.generateStory(
+        parshaName,
+        data.hebrew,
+        data.english
+      );
+
+      // Format the story into HTML sections
+      const storyParagraphs = story.split('\n\n');
+      let formattedStory = '';
+
+      for (const paragraph of storyParagraphs) {
+        if (paragraph.trim()) {
+          formattedStory += `<p>${paragraph.trim()}</p>`;
+        }
+      }
+
+      return `<div class="story-section">${formattedStory}</div>`;
+
+    } catch (error) {
+      console.error('Story generation error:', error);
+      // Fall through to backup content
+    }
+  }
+
+  // Backup if StoryGenerator not available yet
   const firstVerse = data.english && Array.isArray(data.english) && data.english.length > 0
     ? data.english[0]
     : '';
 
-  // Build actual narrative from the Torah text
   let narrative = `<div class="story-section">`;
 
   // Opening based on actual parsha
