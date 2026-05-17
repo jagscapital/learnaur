@@ -5,33 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Davening — Prayer Services | Torah Study Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=David+Libre:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Crimson+Pro:wght@400;700&family=Frank+Ruhl+Libre:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard-modern.css">
   <link rel="stylesheet" href="css/davening.css">
-  <link rel="stylesheet" href="css/cinematic.css">
 </head>
 <body>
 
-  <!-- Ambient Background -->
-  <div class="ambient-overlay"></div>
-  <div class="parchment-texture"></div>
-
-  <!-- Navigation -->
-  <nav class="main-nav">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <span class="hebrew-letter">ת</span>
-        <span class="platform-name">Torah Study</span>
+  <!-- Modern Sticky Navigation -->
+  <nav class="nav-modern">
+    <div class="nav-container-modern">
+      <a href="index.html" class="logo-modern">
+        <span class="logo-icon">ת</span>
+        <span class="logo-text">Torah<span class="logo-light">Study</span></span>
       </a>
 
-      <div class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="parsha.html" class="nav-link">Daily Parsha</a>
-        <a href="davening.html" class="nav-link active">Davening</a>
-        <a href="search.html" class="nav-link">Explore</a>
+      <div class="nav-center">
+        <a href="index.html" class="nav-link-modern">Home</a>
+        <a href="parsha.html" class="nav-link-modern">Daily Parsha</a>
+        <a href="search.html" class="nav-link-modern">Explore</a>
+        <a href="davening.html" class="nav-link-modern active">Davening</a>
       </div>
 
-      <div class="hebrew-date" id="hebrewDate">Loading...</div>
+      <div class="nav-right">
+        <button class="search-trigger" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+        <div class="hebrew-date-modern" id="hebrewDate">Loading...</div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </nav>
 
@@ -61,7 +72,7 @@
       <div class="service-cards">
 
         <!-- Shacharit -->
-        <div class="service-card" onclick="showService('shacharit')">
+        <div class="service-card" data-service="shacharit">
           <div class="service-time">Morning</div>
           <h2 class="service-name">
             <span class="service-english">Shacharit</span>
@@ -72,7 +83,7 @@
         </div>
 
         <!-- Mincha -->
-        <div class="service-card" onclick="showService('mincha')">
+        <div class="service-card" data-service="mincha">
           <div class="service-time">Afternoon</div>
           <h2 class="service-name">
             <span class="service-english">Mincha</span>
@@ -83,7 +94,7 @@
         </div>
 
         <!-- Maariv -->
-        <div class="service-card" onclick="showService('maariv')">
+        <div class="service-card" data-service="maariv">
           <div class="service-time">Evening</div>
           <h2 class="service-name">
             <span class="service-english">Maariv</span>
@@ -104,7 +115,7 @@
     <section id="shacharitService" class="prayer-service">
       <div class="container-prayer">
         <div class="service-header">
-          <button class="back-button" onclick="hideService()">← Back to Services</button>
+          <button class="back-button" data-action="hide-service">← Back to Services</button>
           <h2 class="service-title">
             <span>Shacharit</span>
             <span class="hebrew-subtitle">שחרית</span>
@@ -112,10 +123,10 @@
         </div>
 
         <div class="prayer-options">
-          <button class="option-btn active" onclick="toggleTranslation(true)">Show Translation</button>
-          <button class="option-btn" onclick="toggleTransliteration(true)">Show Transliteration</button>
-          <button class="option-btn" onclick="adjustFontSize('increase')">A+</button>
-          <button class="option-btn" onclick="adjustFontSize('decrease')">A-</button>
+          <button class="option-btn active" data-action="toggle-translation">Show Translation</button>
+          <button class="option-btn" data-action="toggle-transliteration">Show Transliteration</button>
+          <button class="option-btn" data-action="font-increase">A+</button>
+          <button class="option-btn" data-action="font-decrease">A-</button>
         </div>
 
         <div class="prayer-content-area">
@@ -278,7 +289,7 @@
     <section id="minchaService" class="prayer-service">
       <div class="container-prayer">
         <div class="service-header">
-          <button class="back-button" onclick="hideService()">← Back to Services</button>
+          <button class="back-button" data-action="hide-service">← Back to Services</button>
           <h2 class="service-title">
             <span>Mincha</span>
             <span class="hebrew-subtitle">מנחה</span>
@@ -343,7 +354,7 @@
     <section id="maarivService" class="prayer-service">
       <div class="container-prayer">
         <div class="service-header">
-          <button class="back-button" onclick="hideService()">← Back to Services</button>
+          <button class="back-button" data-action="hide-service">← Back to Services</button>
           <h2 class="service-title">
             <span>Maariv</span>
             <span class="hebrew-subtitle">מעריב</span>
@@ -434,6 +445,7 @@
   <!-- Scripts -->
   <script src="js/core.js"></script>
   <script src="js/hebrew-calendar.js"></script>
+  <script src="js/dashboard-modern.js"></script>
   <script src="js/davening.js"></script>
 </body>
 </html>
