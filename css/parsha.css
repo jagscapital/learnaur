@@ -314,9 +314,14 @@
 .text-content {
   max-height: 70vh;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1rem;
   line-height: 2;
   font-size: 1.15rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Custom Scrollbar */
